@@ -62,7 +62,7 @@
 
                 }
               //  echo floor(strlen($texto)/2);
-             //   echo strlen($texto);
+             //  echo strlen($texto);
             ?>
 
 
