@@ -5,7 +5,11 @@ function generarPdf(){
     $pdf = new FPDF();
     $pdf -> AddPage();
     $pdf -> SetFont('Arial','B',18);
-    $pdf -> Cell(60,20, 'no funsionaaa');
+    $pdf -> Cell(60,20, 'Nombre: ');
+    $pdf -> Cell(60,20, 'Empresa: ');
+
+    $pdf -> Cell(60,20, $Nombre);
+
     $pdf -> Output();
 }
 
