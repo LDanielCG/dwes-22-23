@@ -56,10 +56,10 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Lucida Console',monospace;
         }
         body{
             background-color: darkslategray;
-            font-family: 'Lucida Console',monospace;
         }
         .pageCONT {
             display: flex;
@@ -113,6 +113,7 @@
             transform: scale(1);
             filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0));
             transition: 0.5s;
+            
         }
         .boton:hover {
             transform: scale(1.1);
