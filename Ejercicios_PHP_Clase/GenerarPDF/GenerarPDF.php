@@ -62,7 +62,10 @@ if ($error == true){
     $Empresa = $_GET['empresa'];
     $Representante = $_GET['representante'];
     $Fecha = $_GET['fecha'];
-    generarPdf($Nombre,$Empresa,$Representante,$Fecha);
+
+    if($_GET['nombre'] != "" && $_GET['empresa'] != "" && $_GET['representante'] != "" && $_GET['fecha'] != ""){
+        generarPdf($Nombre,$Empresa,$Representante,$Fecha);
+    }
 }
 function generarPdf($Nb, $Em, $Rep, $Fec){
     $pdf = new FPDF();
@@ -87,13 +90,6 @@ function generarPdf($Nb, $Em, $Rep, $Fec){
     $pdf -> Cell(0,7, utf8_decode('Director de ' . $Em));
     $pdf -> Ln();
     $pdf -> Cell(0,7, utf8_decode('Firmado a día ' . $Fec),0,0,'R');
-
-
-
-
-
-
-
     $pdf -> Output();
 }
 
