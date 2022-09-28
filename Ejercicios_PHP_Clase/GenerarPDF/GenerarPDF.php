@@ -102,6 +102,13 @@ function generarPdf($Nb, $Em, $Rep, $Fec){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Lucida Console',monospace;
+        }
+        body{
+            background-color: darkslategray;
+        }
         .pageCont{
             display: flex;
             justify-content: center;
@@ -109,24 +116,68 @@ function generarPdf($Nb, $Em, $Rep, $Fec){
             height:90vh;
         }
         .mainCont{
-            background-color: antiquewhite;
             padding:15px;
+            background-color: rgba(55, 46, 95, 0.5);
+            border: 3px solid #2a2a3c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;  
+            justify-content: flex-start;
         }
         form{
             display: flex;
             flex-direction: column;
+        }
+        label {
+            text-shadow: 0 0 5px aqua;
+            color: aqua;
+            font-size: 12px;
+            padding-bottom: 5px;
+        }
+        .error {
+            text-shadow: 0 0 7px #ff0030;
+            color: #ff2c54;
+            border: 1px solid #ff0030;
+            padding: 30px 97px;
+            margin:0;
+            margin-top:10px;
+        }
+        .titulo{
+            text-shadow: 0 0 5px #f96bb8;
+            color: #f96bb8;
+        }
+        .textoInp {
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0));
+            transform: scale(1);
+            margin:5px;
+            transition: 0.5s;
+        }
+        .textoInp:hover {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.86));
+            transform: scale(1.1);
+        }
+        .boton {
+            margin:2px;
+            transform: scale(1);
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0));
+            transition: 0.5s;
+            
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.86));
         }
     </style>
 </head>
 <body>
     <div class="pageCont">
         <div class="mainCont">
-            <h3>Crea tu carta de motivación</h3>
+            <h3 class="titulo">Crea tu carta de motivación</h3>
             <form action="" method="get">
-                <label>Nombre: </label> <input class="textoInp" type="text" name="nombre" id="" value="<?=$Nombre?>" ><br>
-                <label>Empresa: </label> <input class="textoInp" type="text" name="empresa" id="" value="<?=$Empresa?>" ><br>
-                <label>Representante: </label> <input class="textoInp" type="text" name="representante" id="" value="<?=$Representante?>" ><br>
-                <label>Fecha: </label> <input class="textoInp" type="date" name="fecha" id="" value="<?=$Fecha?>" ><br>
+                <label>Nombre: </label> <input class="textoInp" type="text" name="nombre" id="" value="<?=$Nombre?>" >
+                <label>Empresa: </label> <input class="textoInp" type="text" name="empresa" id="" value="<?=$Empresa?>" >
+                <label>Representante: </label> <input class="textoInp" type="text" name="representante" id="" value="<?=$Representante?>" >
+                <label>Fecha: </label> <input class="textoInp" type="date" name="fecha" id="" value="<?=$Fecha?>" >
                 
                 <input class="boton" type="submit" value="Generar PDF">
             </form>
