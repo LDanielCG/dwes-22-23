@@ -1,9 +1,6 @@
 <?php
 require('/home/ldaniel/Desktop/fpdf184/fpdf.php');
 
-
-
-
 //mantener datos en campos input
 $Nombre = '';
 $error = false;
@@ -54,10 +51,8 @@ if(isset($_GET['fecha'])) {
     $error = false;
 }
 
-//generar pdf que de alguna forma funciona xd
-if ($error == true){
-    //echo 'trueeeee';
-} else{
+//generar pdf y comprobaciones
+if ($error != true){
     $Nombre = $_GET['nombre'];
     $Empresa = $_GET['empresa'];
     $Representante = $_GET['representante'];
