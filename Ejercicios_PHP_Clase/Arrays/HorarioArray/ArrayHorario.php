@@ -9,13 +9,14 @@ $horario = array(
     6 => array(1 => "EIE",2 => "DIW",3 => "DWES",4 => "DWES",5 => "DWEC"),
     7 => array(1 => "ITGS",2 => "DIW",3 => "DWES",4 => "DWES",5 => "DWEC")
 );
-
-function imprimir_horario($horario) {
-    echo '<table border>';
-    for($f = 1; $f <= count($horario); $f++){
+$horas = array(0 => "Horas",1 => "16:00 - 16:55",2 => "16:55 - 17:50",3 => "17:50 - 18:45",4 => "18:45 - 19:10",5 => "19:10 - 20:05",6 => "20:05 - 21:00",7 => "21:00 - 21:55");
+function imprimir_horario($horario,$horas) {
+    echo '<table>';
+    for($f = 0; $f < count($horario); $f++){
         echo '<tr>';
+        echo '<td>'. $horas[$f] .'</td>';
         for($c = 1; $c <= count($horario[$f]); $c++){
-            echo '<td>'. $horario[$f][$c] . '</td>';
+            echo '<td class="'.$horario[$f][$c].'">'. $horario[$f][$c] . '</td>';
         }
         echo '</tr>';
     }
@@ -34,12 +35,42 @@ function imprimir_horario($horario) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style></style>
+    <style>
+        .DWEC {
+            background-color: #ffe59e;
+        }
+        .EIE {
+            background-color: #fff53d;
+        }
+        .ITGS {
+            background-color: #3ddbff;
+        }
+        .DAW {
+            background-color: #f8d4ff;
+        }
+        .DIW {
+            background-color: #ffd4d4;
+        }
+        .DWES {
+            background-color: #9592f7;
+        }
+        .Recreo {
+            background-color: #8c8c8c;
+        }
+        td {
+            padding:5px;
+            text-align: center;
+        }
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
     </head>
     <body>
 
         
-        <?php echo imprimir_horario($horario); ?>
+        <?php echo imprimir_horario($horario,$horas); ?>
        
 
 
