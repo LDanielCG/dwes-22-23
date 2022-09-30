@@ -60,6 +60,7 @@ function imprimir_horario($horario,$horas) {
         td {
             padding:5px;
             text-align: center;
+            border-left:1px solid black;
         }
         table {
             border: 2px solid black;
