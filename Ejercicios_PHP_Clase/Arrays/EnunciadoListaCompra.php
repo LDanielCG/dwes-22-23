@@ -9,10 +9,6 @@
         "arroz" => 0.75,
         "salchichas" => 1
     ];
-    // echo sizeof($productos);
-
-
-
 
     function imprimirLista($productos) { 
 ?>
@@ -24,17 +20,17 @@
             if(isset($_GET[$nomFruta]) != 0) {
                 $numProds = $_GET[$nomFruta];
             }      
-            echo '<input type="number" min="0" max="15" value="'. $numProds .'" name="'. $nomFruta .'"> ' . '<label>' . $nomFruta . ': ' . $precFruta . ' euros</label><br/>';
+            echo '<input type="number" min="0" max="15" value="'. $numProds .'" name="'. $nomFruta .'"> ' . '<label>' . $nomFruta . ': ' . $precFruta . ' €</label><br/>';
                         
             if($_GET[$nomFruta] != 0){
-                echo '<p class="resultado">x'.$numProds. ' ' .$nomFruta.': ' . ($precFruta*$numProds) . ' euros</p>';
+                echo '<p class="resultado">x'.$numProds. ' ' .$nomFruta.': ' . ($precFruta*$numProds) . ' €</p>';
                 $precioTotal += ($precFruta*$numProds);
             }
         }
 ?>
             <input type="submit" value="Generar facutra">
         </form>
-        <h3>Precio total de la compra: <?php echo $precioTotal ?></h3>
+        <h3>Precio total de la compra: <?php echo $precioTotal ?> €</h3>
 <?php } ?>
 
 
@@ -67,17 +63,6 @@
     </style>
 </head>
 <body>
-    
-        <?php 
-        echo imprimirLista($productos);
-        ?>
-       
- 
-    
-
-
-
-
-
+    <?php echo imprimirLista($productos);?>
 </body>
 </html>
