@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --poppins: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--poppins);
+}
+
+header {
+    padding: 0 60px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 5px 10px black;
+}
+
+main {
+    margin: 15px 60px 0;
+}
+
+.list > ul {
+    margin-left: 20px;
+}
+
+.list input[type=checkbox] {
+    display: none;
+}
+
+.list label {
+    cursor: pointer;
+}
+
+.list ul ul {
+    margin-left: 35px;
+}
+
+.list li > ul {
+    opacity: 0;
+    max-height: 0px;
+    visibility: hidden;
+    overflow-y: hidden;
+    list-style-position: inside;
+    transition: max-height 0.25s ease-out, opacity .2s;
+} 
+
+.list input[type=checkbox]:checked ~ ul {
+    opacity: 1;
+    visibility: visible;
+    max-height: 500px;
+    transition: max-height 0.25s ease-in, opacity .2s;
+}
