@@ -66,24 +66,27 @@
 
     echo "<h2>Apartado 3</h2>";
     
+    //Conseguir el nombre de los usuarios sin contraseña:
     $sinPass = array_keys($usuarios, "");
+    
+    //Imprimir arrays antes del cambio
     echo "Usuarios sin contraseña: ";
     print_r($sinPass);
+    
     echo "<br><br>";
     echo "<br><br>";
-
-
+    
     echo "Usuarios sin modificar: ";
     print_r($usuarios);
     echo "<br><br>";
 
+    //Bucle que recorre el array con los usuarios sin contraseña,
     for($i = 0; $i < sizeof($sinPass); $i++){
-        $arrayconPass = array($sinPass[$i] => "tmp2022");
-        $usuarios = array_replace($usuarios, $arrayconPass);    
+        $arrayconPass = array($sinPass[$i] => "tmp2022"); //les añade una contraseña por defecto,
+        $usuarios = array_replace($usuarios, $arrayconPass); // y sobreescribe el array original.    
     }
 
-
-
+    //Imprimir resultados
     echo "Usuarios modificados: ";
     print_r($usuarios);
     echo "<br><br>";
