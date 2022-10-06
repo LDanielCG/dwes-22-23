@@ -64,7 +64,7 @@
     //----------------------------------------------------------------    
     //Apartado 4
 
-    echo "<h2>Apartado 3</h2>";
+    echo "<h2>Apartado 4</h2>";
     
     //Conseguir el nombre de los usuarios sin contraseña:
     $sinPass = array_keys($usuarios, "");
