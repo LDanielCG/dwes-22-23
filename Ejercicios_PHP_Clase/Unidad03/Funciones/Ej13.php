@@ -8,25 +8,21 @@
 </head>
 <body>
     <?php
-    
-    $opciones = [
-        "Madrid" => 28,
-        "Sevilla" => 17,
-        "Cáceres" => 56
-    ];
-    
-    function generar_select(array $opciones, int $seleccionada = -1){
-        foreach($opciones as $key => $value){
-            if($seleccionada == $value){
-                echo '<option value="'.$key.'" selected>'.$key.'</option>';
-            }else{
-                echo '<option value="'.$key.'">'.$key.'</option>';
+        $opciones = [
+            "Madrid" => 28,
+            "Sevilla" => 17,
+            "Cáceres" => 56
+        ];
+        
+        function generar_select(array $opciones, int $seleccionada = -1){
+            foreach($opciones as $key => $value){
+                if($seleccionada == $value){
+                    echo '<option value="'.$key.'" selected>'.$key.'</option>';
+                }else{
+                    echo '<option value="'.$key.'">'.$key.'</option>';
+                }
             }
         }
-    }
-    
-    
-    
     ?>
 
     <select name="provincias" id="provincias">
