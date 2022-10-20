@@ -81,6 +81,11 @@ class CuentaBancaria {
 //Agapito es buena persona y decide transferir la mitad de su salario a Milloneti para que rehaga su vida. 
 //Muestra el detalle (método mostrar) de las 3 cuentas.
 
+$cuentaDefault = new CuentaBancaria();
+echo "<br/>";
+echo $cuentaDefault->mostrar();
+echo "<br/><br/>";
+
 $cuentaA = new CuentaBancaria('Milloneti',1000000);
 $cuentaB = new CuentaBancaria('Agapito',30345);
 $cuentaC = new CuentaBancaria('Pobretón',-10000);
