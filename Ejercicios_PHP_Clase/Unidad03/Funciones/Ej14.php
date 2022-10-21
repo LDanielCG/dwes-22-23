@@ -32,18 +32,27 @@ function imprimeTabulado($arr){
 }
 function imprimeTabulado2($arr, $tab = ""){
     foreach($arr as $key => $value){
-        echo $tab;
-        echo $value;
-        echo "<br/>";
+        echo $tab.$value."<br/>";
         if(is_array($value)){
+            echo "".""."";
             $tab .= "____";
-            echo $tab; imprimeTabulado2($value,$tab); echo "<br/>";
+            imprimeTabulado2($value,$tab);
         }
     }
-
-
 }
+/*function imprimeTabulado2($cosas, $tab = 0) {
+    $aux = '';
+    for($i = 0; $i < $tab; $i++) $aux .= '_';
 
+    foreach ($cosas as $key => $value) {
+        if (is_array($value)) {
+            echo $aux.gettype($value)."<br>";
+            imprimeTabulado($value, ($tab + 4));
+        } else {
+            echo  $aux.$value."<br>";
+        }
+    }
+}*/
 
 //imprimeTabulado($cosas);
 imprimeTabulado2($cosas);
