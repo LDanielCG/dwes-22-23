@@ -8,7 +8,7 @@
 </head>
 <body>
     
-<?php
+<?php error_reporting(0);
 
 $cosas = [
     3,
@@ -30,12 +30,14 @@ function imprimeTabulado($arr){
         }
     }
 }
-function imprimeTabulado2($arr){
-
+function imprimeTabulado2($arr, $tab = ""){
     foreach($arr as $key => $value){
-        echo "$value<br/>";
+        echo $tab;
+        echo $value;
+        echo "<br/>";
         if(is_array($value)){
-            echo "____"; imprimeTabulado2($value); echo "<br/>";
+            $tab .= "____";
+            echo $tab; imprimeTabulado2($value,$tab); echo "<br/>";
         }
     }
 
