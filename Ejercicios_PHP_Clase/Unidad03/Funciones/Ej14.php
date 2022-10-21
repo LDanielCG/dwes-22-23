@@ -33,8 +33,8 @@ function imprimeTabulado($arr){
 function imprimeTabulado2($arr, $tab = ""){
     foreach($arr as $key => $value){
         echo $tab.$value."<br/>";
+        //echo "KEY_AUX: ".$aux." || KEY_ACT: ".$key."-->".$value."  ######  ";
         if(is_array($value)){
-            echo "".""."";
             $tab .= "____";
             imprimeTabulado2($value,$tab);
         }
