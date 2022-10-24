@@ -41,7 +41,7 @@
                             //echo $contD;
                             if($contD == 6 && $this->nivel != 0){
                                 echo "LEVEL DOWN!<br/>";
-                                $this->nivel-1;
+                                $this->nivel--;
                             }
                         }
                     }
