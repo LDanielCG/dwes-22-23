@@ -16,6 +16,13 @@
         function getNivel(){
             return $this->nivel;
         }
+        function getRacha(){
+            return 6;
+        }
+        function getNombreCompleto(){
+            return $this->nombre." ".$this->apellidos;
+        }
+        /*
         function introducirResultado($res) {
             $this->resContV();
             $this->resContD();
@@ -23,7 +30,7 @@
             if(strtolower($res) == "victoria"){
                 array_push($this->historicoPartidos,"victoria");
                 array_push($this->historicoPartidosOG,"victoria");
-                echo "<br/>-----------------Usuario ".$this->nombre." gana partido.<br/>";
+                echo "<br/>-----------------Usuario ".$this->getNombreCompleto()." gana partido.<br/>";
 
                 for($i = 0; $i < sizeof($this->historicoPartidos); $i++){
                     if($this->historicoPartidos[$i] == "victoria"){
@@ -37,10 +44,10 @@
                         }
 
                         $lvlCheck = $this->contV();
-                        if($lvlCheck == 6 && $this->nivel != 6){
+                        if($lvlCheck == $this->getRacha() && $this->nivel != 6){
                             $this->nivel++;
                             //print_r($this->historicoPartidos);
-                            echo "<br/>--------------------------Usuario ".$this->nombre." sube al nivel ".$this->getNivel().".<br/><br/>";
+                            echo "<br/>--------------------------Usuario ".$this->getNombreCompleto()." sube al nivel ".$this->getNivel().".<br/><br/>";
                             $this->historicoPartidos = array_slice($this->historicoPartidos,$i+1);
                             $lvlCheck = 0;
                         }
@@ -50,7 +57,7 @@
             }else if(strtolower($res) == "derrota"){
                 array_push($this->historicoPartidos,"derrota");
                 array_push($this->historicoPartidosOG,"derrota");
-                echo "<br/>-----------------Usuario ".$this->nombre." pierde partido.<br/>";
+                echo "<br/>-----------------Usuario ".$this->getNombreCompleto()." pierde partido.<br/>";
                 for($i = 0; $i < sizeof($this->historicoPartidos); $i++){
                     if($this->historicoPartidos[$i] == "derrota"){
                         if($i != 0){
@@ -66,7 +73,7 @@
                         if($lvlCheck == 6 && $this->nivel != 0){
                             $this->nivel--;
                             //print_r($this->historicoPartidos);
-                            echo "<br/>--------------------------Usuario ".$this->nombre." baja al nivel ".$this->getNivel().".<br/><br/>";
+                            echo "<br/>--------------------------Usuario ".$this->getNombreCompleto()." baja al nivel ".$this->getNivel().".<br/><br/>";
                             $this->historicoPartidos = array_slice($this->historicoPartidos,$i+1);
                             $lvlCheck = 0;
                         }
@@ -86,6 +93,7 @@
 
             
         }
+    
         private $contV = 0;
         private $contD = 0;
         function contV(){
@@ -105,8 +113,33 @@
             $this->contD = 0;
             return $this->contD;
         }
+        */
 
-
+        private $contV = 0;
+        private $contD = 0;
+        function introducirResultado($res){
+            array_push($this->historicoPartidos,strtolower($res));
+            $lastElm = sizeof($this->historicoPartidos)-1;
+            
+            if($this->historicoPartidos[$lastElm] == "victoria"){
+                $this->contV++;
+                echo "<br/>Usuario ".$this->getNombreCompleto()." gana partido.<br/>";
+                if($this->contV == $this->getRacha() && $this->getNivel() != 6){
+                    $this->nivel++;
+                    echo "<br/>Usuario ".$this->getNombreCompleto()." sube al nivel ".$this->getNivel().".<br/><br/>";
+                    $this->contV = 0;
+                }
+            }else if($this->historicoPartidos[$lastElm] == "derrota"){
+                $this->contD++;
+                echo "<br/>Usuario ".$this->getNombreCompleto()." pierde partido.<br/>";
+                if($this->contD == 6 && $this->getNivel() != 0){
+                    $this->nivel--;
+                    echo "<br/>Usuario ".$this->getNombreCompleto()." baja al nivel ".$this->getNivel().".<br/><br/>";
+                    $this->contD = 0;
+                }
+            }
+        }
+        
         function imprimirInformacion(){
             echo "<p>- Nombre: ".$this->nombre." ".$this->apellidos."</p>";
             echo "<p>- Deporte: ".$this->deporte."</p>";

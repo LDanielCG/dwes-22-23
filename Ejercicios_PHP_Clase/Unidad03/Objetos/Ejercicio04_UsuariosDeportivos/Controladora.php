@@ -14,10 +14,7 @@
 
 
     $us1 = new Usuario("PP","P2","Futbol");
-    $us2 = new UsuarioPremium("PremUsu","ApeUs2","Tenis");
-    $us3 = new UsuarioAdministrador("AdmUsu","ApeUs3","Baloncesto");
-    $us3->crearPartido();
-
+   /*
     $us1->introducirResultado("victoria");
     $us1->introducirResultado("victoria");
     $us1->introducirResultado("victoria");
@@ -65,8 +62,25 @@
     $us1->introducirResultado("derrota");
 
     $us1->imprimirInformacion();
-    
+    */
 
+    $us2 = new UsuarioPremium("PremUsu","ApeUs2","Tenis");
+    $us2->introducirResultado("victoria");
+    $us2->introducirResultado("victoria");
+    $us2->introducirResultado("victoria");
+    $us2->introducirResultado("victoria");
+    $us2->introducirResultado("victoria");
+
+    $us2->introducirResultado("derrota");
+    $us2->introducirResultado("derrota");
+    $us2->introducirResultado("derrota");
+    $us2->introducirResultado("derrota");
+    $us2->introducirResultado("derrota");
+    $us2->introducirResultado("derrota");
+
+
+    $us3 = new UsuarioAdministrador("AdmUsu","ApeUs3","Baloncesto");
+    $us3->crearPartido();
 ?>
 </body>
 </html>
