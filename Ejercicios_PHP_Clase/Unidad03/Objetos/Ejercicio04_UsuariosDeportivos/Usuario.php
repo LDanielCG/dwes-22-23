@@ -1,5 +1,5 @@
 <?php 
-    class Usuaruo {
+    class Usuario {
         private $nombre;
         private $apellidos;
         private $deporte;
@@ -11,25 +11,22 @@
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
             $this->deporte = $deporte;
+            echo "Usuario ".$nombre." ".$apellidos." creado.<br/>";
         }
         function getNivel(){
-            return $this->nivel."<br/>";
+            return $this->nivel;
         }
         function introducirResultado($res) {
             $this->resContV();
             $this->resContD();
-            $contV = 0;
-            $contD = 0;
+
             if(strtolower($res) == "victoria"){
-                
                 array_push($this->historicoPartidos,"victoria");
                 array_push($this->historicoPartidosOG,"victoria");
-                echo "<br/>-----------------Victoria :)<br/>";
+                echo "<br/>-----------------Usuario ".$this->nombre." gana partido.<br/>";
 
                 for($i = 0; $i < sizeof($this->historicoPartidos); $i++){
                     if($this->historicoPartidos[$i] == "victoria"){
-                        //$this->resContD();
-                        
                         if($i != 0){
                             if($this->historicoPartidos[$i-1] != "victoria"){
                                 $this->resContV();
@@ -43,8 +40,7 @@
                         if($lvlCheck == 6 && $this->nivel != 6){
                             $this->nivel++;
                             //print_r($this->historicoPartidos);
-                            echo "<br/>--------------------------LEVEL UP!<br/><br/>";
-                            echo "-----------------Nivel: ".$this->getNivel();
+                            echo "<br/>--------------------------Usuario ".$this->nombre." sube al nivel ".$this->getNivel().".<br/><br/>";
                             $this->historicoPartidos = array_slice($this->historicoPartidos,$i+1);
                             $lvlCheck = 0;
                         }
@@ -54,11 +50,9 @@
             }else if(strtolower($res) == "derrota"){
                 array_push($this->historicoPartidos,"derrota");
                 array_push($this->historicoPartidosOG,"derrota");
-                echo "<br/>-----------------Derrota :(<br/>";
+                echo "<br/>-----------------Usuario ".$this->nombre." pierde partido.<br/>";
                 for($i = 0; $i < sizeof($this->historicoPartidos); $i++){
                     if($this->historicoPartidos[$i] == "derrota"){
-                        //$this->resContV();
-                        
                         if($i != 0){
                             if($this->historicoPartidos[$i-1] != "derrota"){
                                 $this->resContD();
@@ -72,8 +66,7 @@
                         if($lvlCheck == 6 && $this->nivel != 0){
                             $this->nivel--;
                             //print_r($this->historicoPartidos);
-                            echo "<br/>--------------------------LEVEL DOWN!<br/><br/>";
-                            echo "-----------------Nivel: ".$this->getNivel();
+                            echo "<br/>--------------------------Usuario ".$this->nombre." baja al nivel ".$this->getNivel().".<br/><br/>";
                             $this->historicoPartidos = array_slice($this->historicoPartidos,$i+1);
                             $lvlCheck = 0;
                         }
@@ -97,74 +90,48 @@
         private $contD = 0;
         function contV(){
             $this->contV++;
-            //echo "V: $this->contV</br>";
             return $this->contV;
         }
         function resContV(){
             $this->contV = 0;
-            //echo "Reset V<br/>";
             return $this->contV;
         }
 
         function contD(){
             $this->contD++;
-            //echo "D: $this->contD<br/>";
             return $this->contD;
         }
         function resContD(){
             $this->contD = 0;
-            //echo "Reset D<br/>";
             return $this->contD;
+        }
+
+
+        function imprimirInformacion(){
+            echo "<p>- Nombre: ".$this->nombre." ".$this->apellidos."</p>";
+            echo "<p>- Deporte: ".$this->deporte."</p>";
+            echo "<p>- Historico de partidos: </p>";
+            $vic = 0;
+            $derr = 0;
+            $emp = 0;
+            foreach($this->historicoPartidosOG as $key => $value){
+                if($value == "victoria"){
+                    $vic++;
+                }
+                if($value == "derrota"){
+                    $derr++;
+                }
+                if($value == "empate"){
+                    $emp++;
+                }
+            }
+            echo "<ul>";
+            echo "<li>Victorias: ".$vic."</li>";
+            echo "<li>Derrotas: ".$derr."</li>";
+            echo "<li>Empates: ".$emp."</li>";
+            echo "</ul>";
         }
 
     }
 
-
-    $us1 = new Usuaruo("PP","P2","Futbol");
-
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    
-   
-    
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-
-    
-
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("empate");
-
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("victoria");
-    $us1->introducirResultado("derrota");
-    $us1->introducirResultado("victoria");
-    
 ?>
