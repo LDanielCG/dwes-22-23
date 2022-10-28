@@ -1,9 +1,10 @@
 <?php
+    namespace Objetos;
     class Objetos {
         private $peso;
         //private $descripcion;
-        use Posicion;
-        use Descripcion;
+        use \Posicion\Posicion;
+        use \Descripcion\Descripcion;
         function getPeso(){
             return $this->peso;
         }

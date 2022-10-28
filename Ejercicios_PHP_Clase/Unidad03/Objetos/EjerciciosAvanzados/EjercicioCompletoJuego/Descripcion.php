@@ -1,4 +1,5 @@
 <?php
+    namespace Descripcion;
     trait Descripcion {
         private $descripcion;
  

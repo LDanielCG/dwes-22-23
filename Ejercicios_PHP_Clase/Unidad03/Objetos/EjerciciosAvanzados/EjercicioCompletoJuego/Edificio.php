@@ -1,8 +1,9 @@
 <?php
+    namespace Edificio;
     class Edificio {
         private $altura;
-        use Posicion;
-        use Descripcion;
+        use \Posicion\Posicion;
+        use \Descripcion\Descripcion;
         function getAltura(){
             return $this->altura;
         }

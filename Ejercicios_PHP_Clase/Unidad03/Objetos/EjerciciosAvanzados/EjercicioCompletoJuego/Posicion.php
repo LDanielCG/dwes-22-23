@@ -1,4 +1,5 @@
 <?php
+    namespace Posicion;
     trait Posicion {
         private $x;
         private $y;

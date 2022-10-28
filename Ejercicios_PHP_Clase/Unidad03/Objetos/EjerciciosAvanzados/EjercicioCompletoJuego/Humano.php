@@ -1,6 +1,7 @@
 <?php
-    class Humano implements Personaje{
-        use Posicion;
+    namespace Humano;
+    class Humano implements \Personaje\Personaje{
+        use \Posicion\Posicion;
         function atacar(){
             echo "Puñetazo.<br/>";
         }

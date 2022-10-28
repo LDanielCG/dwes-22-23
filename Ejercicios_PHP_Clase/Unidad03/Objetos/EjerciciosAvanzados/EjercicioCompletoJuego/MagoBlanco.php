@@ -1,6 +1,7 @@
 <?php
-    class MagoBlanco extends Mago{
-        use Posicion;
+    namespace MagoBlanco;
+    class MagoBlanco extends \Mago\Mago{
+        use \Posicion\Posicion;
         function atacar(){
             echo "Ataque de luz.<br/>";
         }
