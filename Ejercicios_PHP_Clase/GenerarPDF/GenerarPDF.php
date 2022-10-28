@@ -1,5 +1,5 @@
 <?php
-require('/home/ldaniel/Desktop/fpdf184/fpdf.php');
+require_once('./fpdf184/fpdf.php');
 
 //mantener datos en campos input
 $Nombre = '';
