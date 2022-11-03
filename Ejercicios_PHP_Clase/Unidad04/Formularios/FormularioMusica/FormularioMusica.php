@@ -43,8 +43,14 @@
     
         if(count($errores) == 0){
             //Guardo
+            file_put_contents(
+                "temazos.csv",
+                "$temazo;$hora;$min\n",
+                FILE_APPEND
+            );
             //redirect
-            //exit();
+            header("Location: listado.php");
+            exit();
         }
     }
 
