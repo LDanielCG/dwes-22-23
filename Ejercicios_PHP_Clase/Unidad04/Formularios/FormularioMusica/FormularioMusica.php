@@ -2,7 +2,7 @@
     $temazo="";
     $hora=date("h");
     $min=date("i");
-    echo $min;
+    //echo $min;
 
     $opcionesMinuto = [0,15,30,45];
 
@@ -22,12 +22,32 @@
     $errores = [];
 
     if(isset($_POST['enviar'])){
-        if(isset($_POST['tema']) && $_POST['tema'] != ""){
-            $temazo = $_POST['tema'];
+        //Verificar errores
+        if(isset($_POST['temazo']) && $_POST['temazo'] != ""){
+            $temazo = $_POST['temazo'];
         } else{
             $errores['temazo'] = 'No puede estar vacio';
         }
+    
+        if(isset($_POST['hora']) && $_POST['hora'] != ""){
+            $hora = $_POST['hora'];
+        } else{
+            $errores['hora'] = 'No puede estar vacio';
+        }
+    
+        if(isset($_POST['min']) && $_POST['min'] != ""){
+            $min = $_POST['min'];
+        } else{
+            $errores['min'] = 'No puede estar vacio';
+        }
+    
+        if(count($errores) == 0){
+            //Guardo
+            //redirect
+            //exit();
+        }
     }
+
 
 ?>
 
@@ -56,16 +76,19 @@
 <body>
     
     <form action="" method="POST">
-        <label for="tema">Tema música:</label><br>
-        <input type="text" name="cancion" id="tema" value="<?=$temazo?>" placeholder="Pon tu temazo"><br>
-        <div class="error">
-            <p>error 1</p>
-            <p>error 2</p>
-        </div>
+        <label for="temazo">Tema música:</label><br>
+        <input type="text" name="temazo" id="tema" value="<?=$temazo?>" placeholder="Pon tu temazo"><br>
+        <?php
+            if(isset($errores['temazo'])){
+                echo '<div class="error">';
+                echo '<p>'.$errores['temazo'].'</p>';
+                echo '</div>';
+            }
+        ?>
         <label for="hora">HH:</label>
         <input type="number" max="23" size="1" name="hora" id="hora" value="<?=$hora?>" style="width: 50px;">
         <label for="minuto">MM:</label>
-        <select name="" id="">
+        <select name="min" id="min">
             <?php
                 array_walk($opcionesMinuto,function($op, $k, $d){
                     $sel = ($op == $d)?"selected":"";
@@ -73,9 +96,18 @@
                 },$min);
             ?>
         </select><br>
-        <div class="error">
-            <p>error 1</p>
-        </div>
+        <?php
+            if(isset($errores['hora'])){
+                echo '<div class="error">';
+                echo '<p>'.$errores['hora'].'</p>';
+                echo '</div>';
+            }
+            if(isset($errores['min'])){
+                echo '<div class="error">';
+                echo '<p>'.$errores['min'].'</p>';
+                echo '</div>';
+            }
+        ?>
         <input type="submit" name="enviar" value="Enviar">
     </form>
 </body>
