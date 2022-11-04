@@ -3,6 +3,13 @@
         "temazos.csv"
     );
     $lines = explode("\n",$data);
+
+    function cleanData($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 ?>
 
 
@@ -34,7 +41,7 @@
                 foreach($lines as $line){
                     echo "<tr>";
                     $fields = explode(";",$line);
-                    echo "<td>$fields[0]</td>";
+                    echo "<td>".cleanData($fields[0])."</td>";
                     echo "<td>$fields[1]</td>";
                     echo "<td>$fields[2]</td>";
                     echo "</tr>";
