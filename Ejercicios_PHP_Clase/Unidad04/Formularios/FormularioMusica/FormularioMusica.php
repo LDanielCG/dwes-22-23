@@ -96,7 +96,7 @@
         <label for="minuto">MM:</label>
         <select name="min" id="min">
             <?php
-                array_walk($opcionesMinuto,function($op, $k, $d){
+                array_walk($opcionesMinuto,function($op, $k, $d){ //$d es $min
                     $sel = ($op == $d)?"selected":"";
                     echo "<option value='$op' $sel>$op</option>";
                 },$min);
