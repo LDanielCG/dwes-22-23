@@ -1,8 +1,11 @@
 <?php 
     $mydir = '.';
-    
     function directory($mydir){
-        $files = array_diff(scandir($mydir),array('.','..','index.php','css','.git', 'back.php'));
+        if ($mydir == '.') {
+            $files = array_diff(scandir($mydir),array('.','..','index.php','css','.git', 'back.php'));
+        } else {
+            $files = array_diff(scandir($mydir),array('.','..','css','.git', 'back.php'));
+        }
 ?>
     <ul>
         <?php 
@@ -38,7 +41,7 @@
 </head>
 <body>  
         <header>
-            <h2>Indice de ejercicios DWES</h2>
+            <h2>Luis Daniel Casado Guimaraes - DAW2V</h2>
         </header>
         <main>
             <h3>Listado</h3>
