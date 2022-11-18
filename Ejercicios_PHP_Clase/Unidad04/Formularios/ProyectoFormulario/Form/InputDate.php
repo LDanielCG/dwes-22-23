@@ -3,10 +3,12 @@
 
     class InputDate extends Input {
         private $minAge;
+        private $maxAge;
 
-        public function __construct($name, $data = null, $minAge = 16) {
+        public function __construct($name, $data = null, $minAge = 16, $maxAge = 65) {
             $this->type = "date";
             $this->minAge = $minAge;
+            $this->maxAge = $maxAge;
             parent::__construct($name, null, $data, null);
         }
 
@@ -17,11 +19,14 @@
             $sysdate = new \DateTime("now");
             $sysdate->format("Y-m-d");
 
-            $diff = $sysdate->diff(new \DateTime($this->data));
+            $diff = date_diff(new \DateTime($this->data), $sysdate);
+            $diff = intval($diff->format("%R%y")); // %R = +/- | %y = años
 
-            if ($this->data > $sysdate || $diff->y <= $this->minAge) {
+            if ($diff <= $this->minAge) {
                 parent::$errors[$this->name] = "El alumno tiene que ser mayor de " . $this->minAge . " años";
-            }
+            } else if ($diff > $this->maxAge) {
+                parent::$errors[$this->name] = "El alumno tiene que ser menor de " . $this->maxAge . " años";
+            } 
         }
 
         public function printInput() { ?>
