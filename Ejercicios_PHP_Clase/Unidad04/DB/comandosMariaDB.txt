@@ -1,0 +1,27 @@
+COMO ROOT:  sudo su -
+    mariadb
+    show databases
+    exit
+    use <nombre_database>
+    DELETE FROM user WHERE User = '<nombre_usuario>';
+    drop user <nombre_usuario>@'localhost'; --> Eliminar usuario
+    (fuera de mariadb en terminal) 
+        mariadb -u <nombre_usuario> -p <nombre_database>
+        mariadb -h 127.0.0.1 -u <nombre_usuario> -p <nombre_database> --> host especificado en -h
+
+CREAR BASE DE DATOS:
+
+    CREATE DATABASE <nombre_database>;
+    CREATE USER '<nombre_usuario>'@'localhost' IDENTIFIED BY '<contraseña_usuario>';
+    GRANT ALL PRIVILEGES ON <nombre_database>.* TO '<nombre_usuario>'@'localhost' WITH GRANT OPTION;
+
+
+    USUARIOS CREADOS----
+        - DB examen:            examen/examen.
+        - DB tronco:            tronco/tronco.
+        - DB basededatosclase:  alumno/alumno.
+    
+
+
+                                            <       nombre_database    >  <nombre_usuario,contraseña>
+$mbd = new PDO('mysql:host=localhost;dbname=proyecto01_juan_de_la_cierva', "juan", "cierva1234");
