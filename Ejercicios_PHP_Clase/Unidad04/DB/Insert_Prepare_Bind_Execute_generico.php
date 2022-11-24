@@ -1,6 +1,6 @@
 <?php
     // Prepare
-    $stmt = $dbh->prepare("INSERT INTO Clientes (nombre, ciudad) VALUES (?, ?)");
+    $stmt = $mbd->prepare("INSERT INTO Clientes (nombre, ciudad) VALUES (?, ?)");
     // Bind
     $nombre = "Peter";
     $ciudad = "Madrid";

@@ -29,25 +29,27 @@
         ?>
         <table>
             <tr>
-                <?php foreach ($tabla[0] as $clave => $valor) : if (!is_numeric($clave)) : ?>
-                    <th><?= $clave ?></th>
-                <?php endif; endforeach; ?>
+                <?php foreach ($tabla[0] as $clave => $valor) { 
+                    if (!is_numeric($clave)) {
+                        if($clave == 'nombre'){
+                            echo "<th>$clave</th>";
+                        }
+                    }
+                } ?>
             </tr>
-            <?php foreach ($tabla as $fila) : ?>
-                <tr>
-                    <?php foreach ($fila as $clave => $valor) : if (!is_numeric($clave)) : ?>
-                        <?php if($clave == 'nombre') : ?>
-                            <td><a href="detalle.php?id=<?=$fila[0]?>" target="_blank"><?= $valor ?></a></td>
-                        <?php else : ?>
-                            <td><?= $valor ?></td>
-                        <?php endif;?>
-                    <?php endif; endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
+            <?php foreach ($tabla as $fila) {
+                echo "<tr>";
+                    foreach ($fila as $clave => $valor) {
+                        if (!is_numeric($clave)) {
+                            if($clave == 'nombre') {
+                                echo "<td><a href='detalle.php?id=$fila[0]' target='_blank'>$valor</a></td>";
+                            }
+                        }
+                    }
+                echo "</tr>";
+            } ?>
         </table>
-        <p><?= $consulta->rowCount(); ?> filas afectadas.</p>
-    <?php }
-?>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="es">
