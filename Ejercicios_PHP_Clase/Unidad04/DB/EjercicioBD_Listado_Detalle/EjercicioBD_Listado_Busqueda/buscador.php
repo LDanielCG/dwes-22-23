@@ -37,7 +37,7 @@
         ?>
         <form action="" method="post">
             <label>Buscar: </label>
-            <input type="text" name="buscar" id="buscar">
+            <input type="text" name="buscar" id="buscar" value="<?=$_POST['buscar']?>">
             <button type="submit" name="Enviar" value="enviado">Buscar</button>
         </form>
 

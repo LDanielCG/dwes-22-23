@@ -1,0 +1,29 @@
+Mezclar PHP con HTML.
+
+Funciones
+Arrays:
+    Array_map
+    Array_reduce
+    Array_walk
+Cadenas
+
+Objetos
+    - Herencia
+    - Polimorfismo
+    - Interfaces
+    - Abstractas
+    - Traits
+
+Formularios:
+    text
+    date
+    checkbox
+    textArea
+    select
+    radio
+
+Consultas:
+    Select
+    Insert
+    Delete
+    Update

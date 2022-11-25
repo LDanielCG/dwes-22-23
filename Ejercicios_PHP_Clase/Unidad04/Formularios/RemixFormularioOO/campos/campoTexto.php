@@ -1,10 +1,17 @@
 <?php
     class campoTexto extends campo {
-        protected $longitudMinima = 3;
-        protected $longitudMaxima = 25;
+        protected $longitudMinima;
+        protected $longitudMaxima;
+
+        //Constantes.
+        public static const MIN_LENGTH = 3;
+        public static const  MAX_LENGTH = 25;
+        public static const REGEX_SOLO_LETRAS = "[a-zA-ZÀ-ÿ\s]";
+        
+        
 
         //Constructor.
-        function __construct($nombre, $datos = null, $placeholder = null, $longitudMinima, $longitudMaxima, $regex = "[a-zA-ZÀ-ÿ\s]") {
+        function __construct($nombre, $datos = self::DATOS_POR_DEFECTO, $placeholder = self::PLACEHOLDER_POR_DEFECTO, $longitudMinima = self::MIN_LENGTH, $longitudMaxima = self::MAX_LENGTH, $regex = self::REGEX_SOLO_LETRAS) {
             parent::$tipo = "text";
             $this->longitudMinima = $longitudMinima;
             $this->longitudMaxima = $longitudMaxima;
@@ -28,8 +35,5 @@
                 <?=$this->nombre?>:
                 <input require type="<?=$this->tipo?>" name="<?=$this->nombre?>" value="<?=$this->datos?>" placeholder="<?=$this->placeholder?>">
             </label>
-        <? }
-
-
-    }
-?>
+        <?php }
+    } ?>

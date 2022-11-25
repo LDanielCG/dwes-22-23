@@ -8,8 +8,13 @@
         protected static $errores = [];
         protected static $campos = [];
 
+        //Constantes.
+        public static const DATOS_POR_DEFECTO = null;
+        public static const PLACEHOLDER_POR_DEFECTO = null;
+
+
         //Constructor.
-        function __construct($nombre, $datos = null, $placeholder = null, $regex = null){
+        function __construct($nombre, $datos = self::DATOS_POR_DEFECTO, $placeholder = self::PLACEHOLDER_POR_DEFECTO, $regex = null){
             $this->nombre = $nombre;
             $this->datos = $datos;
             $this->placeholder = $placeholder;
@@ -26,10 +31,10 @@
 
         //Validar.
         function validar(){
-            self::cleanData($this->data);
+            self::cleanData($this->datos);
 
             //Comprobación genérica.
-            if(empty($this->data)){
+            if(empty($this->datos)){
                 self::$errores = $this->nombre.' está vacío.';
             }
         }

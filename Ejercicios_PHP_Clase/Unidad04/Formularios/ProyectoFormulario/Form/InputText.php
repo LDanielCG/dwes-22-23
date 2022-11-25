@@ -4,8 +4,9 @@
     class InputText extends Input {
         private $minLength;
         private $maxLength;
+        public static const MIN_LENGTH = 3;
 
-        public function __construct($name, $placeholder = null, $data = null, $minLength = 3, $maxLength = 25,  $regex = "[a-zA-ZÀ-ÿ\s]") {
+        public function __construct($name, $placeholder = null, $data = null, $minLength = InputText::MIN_LENGTH, $maxLength = 25,  $regex = "[a-zA-ZÀ-ÿ\s]") {
             $this->type = "text";
             $this->minLength = $minLength;
             $this->maxLength = $maxLength;
