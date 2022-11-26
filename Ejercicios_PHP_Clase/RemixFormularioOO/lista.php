@@ -5,6 +5,7 @@
         require("$path${file}.php");
     });
 
+
     $config = Formulario\Controlador::singleton();
     $usuarios = $config->recuperarUsuarios();
     $claves = $config->getKeys();
@@ -29,10 +30,11 @@
                 </tr>
                 <?php foreach ($usuarios as $usuario) { ?>
                     <tr>
-                        <td><?= $usuario->getNombre(); ?></td>
-                        <td><?= $usuario->getApellidos(); ?></td>
-                        <td><?= $usuario->getNumero(); ?></td>
+                        <td><?= $usuario->getNombre();      ?></td>
+                        <td><?= $usuario->getApellidos();   ?></td>
+                        <td><?= $usuario->getNumero();      ?></td>
                         <!-- Contraseña no se muestra -->
+                        <td><?= $usuario->getFecha();       ?></td>
                     </tr>
                 <?php } ?>
             </table>

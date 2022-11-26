@@ -13,15 +13,15 @@
         //Constructor.
         function __construct(
             $nombre, 
-            $datos = self::DATOS_POR_DEFECTO, 
-            $placeholder = self::PLACEHOLDER_POR_DEFECTO, 
-            $regex = self::REGEX_SOLO_LETRAS,
-            $longitudMinima = self::MIN_LENGTH, 
-            $longitudMaxima = self::MAX_LENGTH
+            $datos              = self::DATOS_POR_DEFECTO, 
+            $placeholder        = self::PLACEHOLDER_POR_DEFECTO, 
+            $regex              = self::REGEX_SOLO_LETRAS,
+            $longitudMinima     = self::MIN_LENGTH, 
+            $longitudMaxima     = self::MAX_LENGTH
         ){
-            $this->tipo = "text";
-            $this->longitudMinima = $longitudMinima;
-            $this->longitudMaxima = $longitudMaxima;
+            $this->tipo             = "text";
+            $this->longitudMinima   = $longitudMinima;
+            $this->longitudMaxima   = $longitudMaxima;
             parent::__construct($nombre, $datos, $placeholder, $regex);
         }
 

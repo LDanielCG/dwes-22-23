@@ -13,15 +13,15 @@
         //Constructor.
         function __construct(
             $nombre, 
-            $datos = parent::DATOS_POR_DEFECTO, 
-            $placeholder = parent::PLACEHOLDER_POR_DEFECTO, 
-            $regex = self::REGEX_LETRAS_NUMEROS_BARRA_BAJA, 
-            $longitudMinima = self::MIN_LENGTH,
-            $longitudMaxima = self::MAX_LENGTH
+            $datos              = parent::DATOS_POR_DEFECTO, 
+            $placeholder        = parent::PLACEHOLDER_POR_DEFECTO, 
+            $regex              = self::REGEX_LETRAS_NUMEROS_BARRA_BAJA, 
+            $longitudMinima     = self::MIN_LENGTH,
+            $longitudMaxima     = self::MAX_LENGTH
         ){
-            $this->tipo = "password";
-            $this->longitudMinima = $longitudMinima;
-            $this->longitudMaxima = $longitudMaxima;
+            $this->tipo             = "password";
+            $this->longitudMinima   = $longitudMinima;
+            $this->longitudMaxima   = $longitudMaxima;
             parent::__construct($nombre, $datos, $placeholder, $regex);
         }
 
@@ -32,7 +32,7 @@
             $regexCompleto = "/". $this->regex ."{".$this->longitudMinima.",".$this->longitudMaxima."}/";
 
             if(!preg_match($regexCompleto, $this->datos)){
-                parent::$errores[$this->nombre] = ucfirst($this->nombre) . " no válido. Longitud mínima: ".$this->longitudMinima." carácteres y longitud máxima: ".$this->longitudMaxima.".";
+                parent::$errores[$this->nombre] = ucfirst($this->nombre) . " no válida. Longitud mínima: ".$this->longitudMinima." carácteres y longitud máxima: ".$this->longitudMaxima.".";
             }
         }
 

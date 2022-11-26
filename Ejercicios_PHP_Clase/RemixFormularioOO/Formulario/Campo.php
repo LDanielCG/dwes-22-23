@@ -17,15 +17,15 @@
         //Constructor.
         function __construct(
             $nombre, 
-            $datos = self::DATOS_POR_DEFECTO, 
-            $placeholder = self::PLACEHOLDER_POR_DEFECTO, 
-            $regex = self::REGEX_POR_DEFECTO
+            $datos          = self::DATOS_POR_DEFECTO, 
+            $placeholder    = self::PLACEHOLDER_POR_DEFECTO, 
+            $regex          = self::REGEX_POR_DEFECTO
         ){
-            $this->nombre = $nombre;
-            $this->datos = $datos;
-            $this->placeholder = $placeholder;
-            $this->regex = $regex;
-            self::$campos[] = $this;
+            $this->nombre       = $nombre;
+            $this->datos        = $datos;
+            $this->placeholder  = $placeholder;
+            $this->regex        = $regex;
+            self::$campos[]     = $this;
         }
 
         //Clean data.
@@ -56,18 +56,18 @@
         }
 
         //Getters
-        function getTipo(){return $this->tipo;}
-        function getNombre(){return $this->nombre;}
-        function getDatos(){return $this->datos;}
-        function getPlaceholder(){return $this->placeholder;}
-        function getRegex(){return $this->regex;}
-        static function getCampos(){return self::$campos;}
-        static function getErrores(){return self::$errores;}
+        function getTipo()              {   return $this->tipo;         }
+        function getNombre()            {   return $this->nombre;       }
+        function getDatos()             {   return $this->datos;        }
+        function getPlaceholder()       {   return $this->placeholder;  }
+        function getRegex()             {   return $this->regex;        }
+        static function getCampos()     {   return self::$campos;       }
+        static function getErrores()    {   return self::$errores;      }
         //Setters
-        function setTipo($tip){$this->tipo = $tip;}
-        function setNombre($nom){$this->nombre = $nom;}
-        function setDatos($dat){$this->datos = $dat;}
-        function setPlaceholder($plac){$this->placeholder = $plac;}
-        function setRegex($reg){$this->regex = $reg;}
+        function setTipo($tip)          {   $this->tipo = $tip;         }
+        function setNombre($nom)        {   $this->nombre = $nom;       }
+        function setDatos($dat)         {   $this->datos = $dat;        }
+        function setPlaceholder($plac)  {   $this->placeholder = $plac; }
+        function setRegex($reg)         {   $this->regex = $reg;        }
     }
 ?>

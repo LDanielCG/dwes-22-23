@@ -9,7 +9,7 @@
     @$config->crearCampos($_POST);
    
     $claves = $config->getClaves();
-
+    
     if (isset($_POST["submit"])){
         $usuario = new Formulario\Usuario($_POST);
         $usuario->validarUsuario();

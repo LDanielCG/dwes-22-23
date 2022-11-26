@@ -6,6 +6,7 @@
         private $apellidos;
         private $numero;
         private $contraseña;
+        private $fecha;
 
         //Constructor.
         public function __construct($post){
@@ -13,6 +14,7 @@
             $this->apellidos    = @$post[parent::getKeys()[1]];
             $this->numero       = @$post[parent::getKeys()[2]];
             $this->contraseña   = @$post[parent::getKeys()[3]];
+            $this->fecha        = @$post[parent::getKeys()[4]];
         }
 
 
@@ -35,6 +37,8 @@
             $this->setApellidos(Campo::getCampos()[1]->getDatos());
             $this->setNumero(Campo::getCampos()[2]->getDatos());
             $this->setContraseña(Campo::getCampos()[3]->getDatos());
+            $this->setFecha(Campo::getCampos()[4]->getDatos());
+
 
         }
         //Comprobacion si es válido.
@@ -49,13 +53,14 @@
         public function getApellidos()  {   return $this->apellidos;  }
         public function getNumero()     {   return $this->numero;     }
         public function getContraseña() {   return $this->contraseña; }
-
+        public function getFecha()      {   return $this->fecha;      }
 
         //Setters.
         public function setNombre($nom)         {   $this->nombre = $nom;       }
         public function setApellidos($ape)      {   $this->apellidos = $ape;    }
         public function setNumero($num)         {   $this->numero = $num;       }
         public function setContraseña($contr)   {   $this->contraseña = $contr; }
+        public function setFecha($fec)          {   $this->fecha = $fec;        }
 
 
     }

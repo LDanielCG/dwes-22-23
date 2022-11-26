@@ -18,9 +18,9 @@
 
         //Recuperar del archivo el usuario.
         public function recuperarUsuarios(){
-            $usuarios = @file_get_contents("./listado.csv");
+            $usuarios = @file_get_contents("./CSV/listado.csv");
 
-            self::$keys = @file_get_contents("./claves.csv");
+            self::$keys = @file_get_contents("./CSV/claves.csv");
             self::$keys = explode(',',self::$keys);
 
             if($usuarios != false){
@@ -34,7 +34,7 @@
                 }
             }else{
                 //No existe el archivo, lo crea.
-                self::$fichero = file_put_contents("./listado.csv", "");
+                self::$fichero = file_put_contents("./CSV/listado.csv", "");
             }
 
             return self::$fichero;
@@ -49,11 +49,12 @@
         //Guardar en un archivo el usuario.
         public function guardarUsuario(Usuario $usuario){
             file_put_contents(
-                "./listado.csv",
+                "./CSV/listado.csv",
                 $usuario->getNombre().",".
                 $usuario->getApellidos().",".
                 $usuario->getNumero().",".
-                password_hash($usuario->getContraseña(), PASSWORD_DEFAULT)."\n",
+                password_hash($usuario->getContraseña(), PASSWORD_DEFAULT).",".
+                $usuario->getFecha()."\n",
                 FILE_APPEND
             );
         }
@@ -65,6 +66,7 @@
             $apellido   = new CampoTexto    ("Apellidos"    , $post["Apellidos"]    , "Apellidos"   );
             $numero     = new CampoNumero   ("Numero"       , $post["Numero"]       , "Numero"      );
             $contraseña = new CampoPassword ("Contraseña"   , $post["Contraseña"]   , "Contraseña"  );
+            $fecha      = new CampoFecha    ("Fecha"        , $post["Fecha"]        );
             self::setClaves();
         }
 
@@ -72,7 +74,7 @@
         public static function setClaves(){
             foreach(Campo::getCampos() as $clave){
                 self::$claves[] = $clave->getNombre();
-                file_put_contents("./claves.csv",implode(',',self::$claves));
+                file_put_contents("./CSV/claves.csv",implode(',',self::$claves));
             }
         }
         public function getClaves() {   return self::$claves;   }

@@ -13,15 +13,15 @@
         //Constructor.
         function __construct(
             $nombre,
-            $datos = parent::DATOS_POR_DEFECTO,
-            $placeholder = parent::PLACEHOLDER_POR_DEFECTO,
-            $regex = self::REGEX_TLF_ESPANOL,
-            $num_minimo = self::MIN_NUMBER,
-            $num_maximo = self::MAX_NUMBER
+            $datos          = parent::DATOS_POR_DEFECTO,
+            $placeholder    = parent::PLACEHOLDER_POR_DEFECTO,
+            $regex          = self::REGEX_TLF_ESPANOL,
+            $num_minimo     = self::MIN_NUMBER,
+            $num_maximo     = self::MAX_NUMBER
         ){
-            $this->tipo = "number";
-            $this->num_minimo = $num_minimo;
-            $this->num_maximo = $num_maximo;
+            $this->tipo         = "number";
+            $this->num_minimo   = $num_minimo;
+            $this->num_maximo   = $num_maximo;
             parent::__construct($nombre,$datos,$placeholder,$regex);
         }
 
