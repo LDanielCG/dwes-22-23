@@ -1,0 +1,8 @@
+Text  --Hecho
+Date
+Checkbox
+textArea
+Select
+Radio
+number
+password --Hecho

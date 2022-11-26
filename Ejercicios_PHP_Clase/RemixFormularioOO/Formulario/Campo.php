@@ -15,7 +15,12 @@
         const REGEX_POR_DEFECTO = null;
 
         //Constructor.
-        function __construct($nombre, $datos = self::DATOS_POR_DEFECTO, $placeholder = self::PLACEHOLDER_POR_DEFECTO, $regex = self::REGEX_POR_DEFECTO){
+        function __construct(
+            $nombre, 
+            $datos = self::DATOS_POR_DEFECTO, 
+            $placeholder = self::PLACEHOLDER_POR_DEFECTO, 
+            $regex = self::REGEX_POR_DEFECTO
+        ){
             $this->nombre = $nombre;
             $this->datos = $datos;
             $this->placeholder = $placeholder;
@@ -36,7 +41,7 @@
 
             //Comprobación genérica.
             if(empty($this->datos)){
-                self::$errores[$this->nombre] = $this->nombre.' está vacío.';
+                self::$errores[$this->nombre] = ucfirst($this->nombre) . ' está vacío.';
             }
         }
 

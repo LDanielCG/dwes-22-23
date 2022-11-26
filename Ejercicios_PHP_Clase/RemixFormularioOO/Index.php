@@ -1,17 +1,16 @@
 <?php
-
-use Campos\Controlador;
-
     spl_autoload_register(function($class) {
         $path = "./";
-        $file = str_replace("\\", "/", $class);
+        $file = str_replace('\\', '/', $class);
         require("$path${file}.php");
     });
 
-    $config = Formulario\Controlador::singleton();
+    $config = \Formulario\Controlador::singleton();
     @$config->crearCampos($_POST);
+   
+    $claves = $config->getClaves();
 
-    if (isset($_POST["submit"])) {
+    if (isset($_POST["submit"])){
         $usuario = new Formulario\Usuario($_POST);
         $usuario->validarUsuario();
 
@@ -19,7 +18,7 @@ use Campos\Controlador;
         if($usuario->esValido()){
             //Guardar en el archivo.
             $config->guardarUsuario($usuario);
-
+            
             //Redirigir.
             header("Location: index.php?success=true");
 
@@ -32,8 +31,17 @@ use Campos\Controlador;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FormularioRemix</title>
+    <title>Formulario de registro</title>
 </head>
+<style>
+    form div{
+        display: flex;
+        flex-direction: column;
+    }
+    form div label{
+        margin:10px;
+    }
+</style>
 <body>
     <?php
 
@@ -47,12 +55,13 @@ use Campos\Controlador;
     ?>
 
     <form action="index.php" method="post">
-        <h2>Regstrar en remix</h2>
+        <h2>Regstrar usuario</h2>
         <div>
             <?php \Formulario\Campo::pintarFormulario() ?>
         </div>
 
         <input type="submit" value="Enviar" name="submit">
+        <a href="lista.php">Ver usuarios</a>
     </form>
 
 
