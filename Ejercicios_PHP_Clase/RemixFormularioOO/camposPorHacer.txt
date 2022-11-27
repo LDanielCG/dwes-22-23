@@ -1,8 +1,8 @@
 Text      --Hecho
-Date      --Fecha
-Checkbox
+Date      --Hecho
+Checkbox  --Hecho
 textArea
-Select
-Radio
+Select	 --Hecho
+Radio	 --Hecho
 number	 --Hecho
 password --Hecho

@@ -54,19 +54,27 @@
                 $usuario->getApellidos().",".
                 $usuario->getNumero().",".
                 password_hash($usuario->getContraseña(), PASSWORD_DEFAULT).",".
-                $usuario->getFecha()."\n",
+                $usuario->getFecha().",".
+                $usuario->getCorreo().",".
+                $usuario->getSexo().",".
+                $usuario->getCurso().",".
+                implode(";",$usuario->getEstudios())."\n",
                 FILE_APPEND
             );
         }
 
         //Creacion de los campos.
         public function crearCampos($post){
-            //Campos          tipo_campo    | nombre        | datos_campo           | Placeholder   | Regex     | MinLength     | MaxLength
-            $nombre     = new CampoTexto    ("Nombre"       , $post["Nombre"]       , "Nombre"      );
-            $apellido   = new CampoTexto    ("Apellidos"    , $post["Apellidos"]    , "Apellidos"   );
-            $numero     = new CampoNumero   ("Numero"       , $post["Numero"]       , "Numero"      );
-            $contraseña = new CampoPassword ("Contraseña"   , $post["Contraseña"]   , "Contraseña"  );
+            //Campos          tipo_campo    | nombre        | datos_campo           | Placeholder                                   | Regex     | MinLength     | MaxLength
+            $nombre     = new CampoTexto    ("Nombre"       , $post["Nombre"]       , "Nombre"                                      );
+            $apellido   = new CampoTexto    ("Apellidos"    , $post["Apellidos"]    , "Apellidos"                                   );
+            $numero     = new CampoNumero   ("Numero"       , $post["Numero"]       , "Numero"                                      );
+            $contraseña = new CampoPassword ("Contraseña"   , $post["Contraseña"]   , "Contraseña"                                  );
             $fecha      = new CampoFecha    ("Fecha"        , $post["Fecha"]        );
+            $correo     = new CampoCorreo   ("Correo"       , $post["Correo"]       , "Correo"                                      );
+            $sexo       = new CampoRadio    ("Sexo"         , $post["Sexo"]         , "Hombre","Mujer","Otro"                       );
+            $curso      = new CampoSelect   ("Curso"        , $post["Curso"]        , "SMR","ASIR","DAW","DAM"                      );
+            $estudios   = new CampoCheckbox ("Estudios"     , $post["Estudios"]     , "Primaria","ESO","Bachillerato","CFGM","CFGS" );
             self::setClaves();
         }
 

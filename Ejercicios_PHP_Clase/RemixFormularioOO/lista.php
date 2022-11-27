@@ -15,6 +15,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de usuarios</title>
+    <style>
+        tr {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -35,6 +40,10 @@
                         <td><?= $usuario->getNumero();      ?></td>
                         <!-- Contraseña no se muestra -->
                         <td><?= $usuario->getFecha();       ?></td>
+                        <td><?= $usuario->getCorreo();      ?></td>
+                        <td><?= $usuario->getSexo();        ?></td>
+                        <td><?= $usuario->getCurso();       ?></td>
+                        <td><?= $usuario->getEstudios();    ?></td>
                     </tr>
                 <?php } ?>
             </table>
