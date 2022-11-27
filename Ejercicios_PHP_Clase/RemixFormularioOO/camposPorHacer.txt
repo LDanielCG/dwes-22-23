@@ -1,7 +1,7 @@
 Text      --Hecho
 Date      --Hecho
 Checkbox  --Hecho
-textArea
+textArea  --Hecho
 Select	 --Hecho
 Radio	 --Hecho
 number	 --Hecho

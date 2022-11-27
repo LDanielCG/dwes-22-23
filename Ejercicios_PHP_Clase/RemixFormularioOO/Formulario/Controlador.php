@@ -58,7 +58,8 @@
                 $usuario->getCorreo().",".
                 $usuario->getSexo().",".
                 $usuario->getCurso().",".
-                implode(";",$usuario->getEstudios())."\n",
+                implode(";",$usuario->getEstudios()).",".
+                $usuario->getDescripcion()."\n",
                 FILE_APPEND
             );
         }
@@ -75,6 +76,7 @@
             $sexo       = new CampoRadio    ("Sexo"         , $post["Sexo"]         , "Hombre","Mujer","Otro"                       );
             $curso      = new CampoSelect   ("Curso"        , $post["Curso"]        , "SMR","ASIR","DAW","DAM"                      );
             $estudios   = new CampoCheckbox ("Estudios"     , $post["Estudios"]     , "Primaria","ESO","Bachillerato","CFGM","CFGS" );
+            $descripcion= new CampoTextArea ("Descripcion"  , $post["Descripcion"]  , "Descripcion"                                 );
             self::setClaves();
         }
 

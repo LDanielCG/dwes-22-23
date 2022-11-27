@@ -38,12 +38,13 @@
                         <td><?= $usuario->getNombre();      ?></td>
                         <td><?= $usuario->getApellidos();   ?></td>
                         <td><?= $usuario->getNumero();      ?></td>
-                        <!-- Contraseña no se muestra -->
+                        <!----- Contraseña no se muestra    ------>
                         <td><?= $usuario->getFecha();       ?></td>
                         <td><?= $usuario->getCorreo();      ?></td>
                         <td><?= $usuario->getSexo();        ?></td>
                         <td><?= $usuario->getCurso();       ?></td>
                         <td><?= $usuario->getEstudios();    ?></td>
+                        <td><?= $usuario->getDescripcion(); ?></td>
                     </tr>
                 <?php } ?>
             </table>

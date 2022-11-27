@@ -11,6 +11,7 @@
         private $sexo;          //CampoRadio
         private $curso;         //CampoSelect
         private $estudios;      //CampoCheckbox
+        private $descripcion;   //CampoTextArea
 
         //Constructor.
         public function __construct($post){
@@ -23,6 +24,7 @@
             $this->sexo         = @$post[parent::getKeys()[6]];
             $this->curso        = @$post[parent::getKeys()[7]];
             $this->estudios     = @$post[parent::getKeys()[8]];
+            $this->descripcion  = @$post[parent::getKeys()[9]];
 
         }
 
@@ -51,6 +53,8 @@
             $this->setSexo          (   Campo::getCampos()[6]->getDatos()   );
             $this->setCurso         (   Campo::getCampos()[7]->getDatos()   );
             $this->setEstudios      (   Campo::getCampos()[8]->getDatos()   );
+            $this->setDescripcion   (   Campo::getCampos()[9]->getDatos()   );
+
 
         }
         //Comprobacion si es válido.
@@ -61,15 +65,16 @@
 
 
         //Getters.
-        public function getNombre()     {   return $this->nombre;     }
-        public function getApellidos()  {   return $this->apellidos;  }
-        public function getNumero()     {   return $this->numero;     }
-        public function getContraseña() {   return $this->contraseña; }
-        public function getFecha()      {   return $this->fecha;      }
-        public function getCorreo()     {   return $this->correo;     }
-        public function getSexo()       {   return $this->sexo;       }
-        public function getCurso()      {   return $this->curso;      }
-        public function getEstudios()   {   return $this->estudios;   }
+        public function getNombre()      {   return $this->nombre;      }
+        public function getApellidos()   {   return $this->apellidos;   }
+        public function getNumero()      {   return $this->numero;      }
+        public function getContraseña()  {   return $this->contraseña;  }
+        public function getFecha()       {   return $this->fecha;       }
+        public function getCorreo()      {   return $this->correo;      }
+        public function getSexo()        {   return $this->sexo;        }
+        public function getCurso()       {   return $this->curso;       }
+        public function getEstudios()    {   return $this->estudios;    }
+        public function getDescripcion() {   return $this->descripcion; }
 
         //Setters.
         public function setNombre($nom)         {   $this->nombre       = $nom;     }
@@ -81,6 +86,8 @@
         public function setSexo($sex)           {   $this->sexo         = $sex;     }
         public function setCurso($cur)          {   $this->curso        = $cur;     }
         public function setEstudios($est)       {   $this->estudios     = $est;     }
+        public function setDescripcion($desc)   {   $this->descripcion  = $desc;    }
 
+        
     }
 ?>

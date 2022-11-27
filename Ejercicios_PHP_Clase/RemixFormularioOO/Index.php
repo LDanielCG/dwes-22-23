@@ -41,6 +41,11 @@
     form div label{
         margin:10px;
     }
+    textarea {
+        width: 300px;
+        height: 100px;
+        resize: none;
+    }
 </style>
 <body>
     <?php
