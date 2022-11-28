@@ -26,16 +26,16 @@
         //Creacion de los campos.
         public function crearCampos($post){
             //Campos                  Tipo_campo    | nombre        | datos_campo           | Placeholder & Opciones Radio,Select,Checkbox  | Regex     | MinLength     | MaxLength
-            $this->nombre       = new CampoTexto    ("Nombre"       , $post["Nombre"]       , "Nombre"                                      );
-            $this->apellidos    = new CampoTexto    ("Apellidos"    , $post["Apellidos"]    , "Apellidos"                                   );
-            $this->numero       = new CampoNumero   ("Numero"       , $post["Numero"]       , "Numero"                                      );
-            $this->contraseña   = new CampoPassword ("Contraseña"   , $post["Contraseña"]   , "Contraseña"                                  );
-            $this->fecha        = new CampoFecha    ("Fecha"        , $post["Fecha"]        );
-            $this->correo       = new CampoCorreo   ("Correo"       , $post["Correo"]       , "Correo"                                      );
-            $this->sexo         = new CampoRadio    ("Sexo"         , $post["Sexo"]         , "Hombre","Mujer","Otro"                       );
-            $this->curso        = new CampoSelect   ("Curso"        , $post["Curso"]        , "SMR","ASIR","DAW","DAM"                      );
-            $this->estudios     = new CampoCheckbox ("Estudios"     , $post["Estudios"]     , "Primaria","ESO","Bachillerato","CFGM","CFGS" );
-            $this->descripcion  = new CampoTextArea ("Descripcion"  , $post["Descripcion"]  , "Descripcion"                                 );
+            @$this->nombre       = new CampoTexto    ("Nombre"       , $post["Nombre"]       , "Nombre"                                      );
+            @$this->apellidos    = new CampoTexto    ("Apellidos"    , $post["Apellidos"]    , "Apellidos"                                   );
+            @$this->numero       = new CampoNumero   ("Numero"       , $post["Numero"]       , "Numero"                                      );
+            @$this->contraseña   = new CampoPassword ("Contraseña"   , $post["Contraseña"]   , "Contraseña"                                  );
+            @$this->fecha        = new CampoFecha    ("Fecha"        , $post["Fecha"]        );
+            @$this->correo       = new CampoCorreo   ("Correo"       , $post["Correo"]       , "Correo"                                      );
+            @$this->sexo         = new CampoRadio    ("Sexo"         , $post["Sexo"]         , "Hombre","Mujer","Otro"                       );
+            @$this->curso        = new CampoSelect   ("Curso"        , $post["Curso"]        , "SMR","ASIR","DAW","DAM"                      );
+            @$this->estudios     = new CampoCheckbox ("Estudios"     , $post["Estudios"]     , "Primaria","ESO","Bachillerato","CFGM","CFGS" );
+            @$this->descripcion  = new CampoTextArea ("Descripcion"  , $post["Descripcion"]  , "Descripcion"                                 );
         }
 
 

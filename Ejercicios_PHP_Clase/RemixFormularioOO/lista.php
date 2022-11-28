@@ -6,52 +6,44 @@
     });
 
 
-    $config = Formulario\Controlador::singleton();
-    $usuarios = $config->recuperarUsuarios();
-    $claves = $config->getKeys();
+    $formulario = Formulario\ControladorUsuario::singleton();
+    $formulario->crearCampos($_POST);
+    $claves = $formulario->getKeys();
+
+    $fh = Formulario\claseFileCSV::singleton();
+    $csv = $fh->getCSV();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Listado de usuarios</title>
-    <style>
-        tr {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./CSS/lista.css">
 </head>
 <body>
     <div>
-        <?php if(!empty($usuarios)){ ?>
+        <?php if(!empty($csv)){ ?>
             <table border>
                 <caption>Lista de usuarios</caption>
                 <tr>
-                    <?php foreach($claves as $clave){
-                        if($clave != $claves[3]){ ?>
+                    <?php foreach($claves as $clave){ ?>
                             <td><?=ucfirst($clave)?></td>
-                    <?php }
-                    } ?>
+                    <?php } ?>
                 </tr>
-                <?php foreach ($usuarios as $usuario) { ?>
+                <?php foreach(explode("\n", $csv) as $linea) { ?>
                     <tr>
-                        <td><?= $usuario->getNombre();      ?></td>
-                        <td><?= $usuario->getApellidos();   ?></td>
-                        <td><?= $usuario->getNumero();      ?></td>
-                        <!----- Contraseña no se muestra    ------>
-                        <td><?= $usuario->getFecha();       ?></td>
-                        <td><?= $usuario->getCorreo();      ?></td>
-                        <td><?= $usuario->getSexo();        ?></td>
-                        <td><?= $usuario->getCurso();       ?></td>
-                        <td><?= $usuario->getEstudios();    ?></td>
-                        <td><?= $usuario->getDescripcion(); ?></td>
+                        <?php if(!empty($linea)){
+                            foreach (explode(",", $linea) as $valor){ ?>
+                                <td><?=$valor?></td>
+                            <?php }
+                        } ?>
                     </tr>
                 <?php } ?>
             </table>
         <?php }else { ?>
             <h2>No hay usuarios.</h2>
         <?php } ?>
-
         <a href="index.php">Volver</a>
     </div>
 </body>
