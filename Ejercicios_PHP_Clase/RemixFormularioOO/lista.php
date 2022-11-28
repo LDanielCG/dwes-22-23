@@ -52,7 +52,7 @@
             <h2>No hay usuarios.</h2>
         <?php } ?>
 
-        <a href="Index.php">Volver</a>
+        <a href="index.php">Volver</a>
     </div>
 </body>
 </html>

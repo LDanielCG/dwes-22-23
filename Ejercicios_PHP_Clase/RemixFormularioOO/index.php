@@ -5,10 +5,9 @@
         require("$path${file}.php");
     });
 
-    $config = \Formulario\Controlador::singleton();
+    $config = Formulario\Controlador::singleton();
     @$config->crearCampos($_POST);
    
-    $claves = $config->getClaves();
     
     if (isset($_POST["submit"])){
         $usuario = new Formulario\Usuario($_POST);
@@ -59,7 +58,7 @@
         }
     ?>
 
-    <form action="index.php" method="post">
+    <form action="" method="post">
         <h2>Regstrar usuario</h2>
         <div>
             <?php \Formulario\Campo::pintarFormulario() ?>

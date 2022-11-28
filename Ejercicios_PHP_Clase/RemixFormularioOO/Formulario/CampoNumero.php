@@ -1,7 +1,7 @@
 <?php
     namespace Formulario;
 
-    class campoNumero extends Campo {
+    class CampoNumero extends Campo {
         protected $num_minimo;
         protected $num_maximo;
         
