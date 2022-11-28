@@ -14,6 +14,15 @@
 
     //$select = $baseDeDatos->seleccionarTodo();
     $select = $baseDeDatos->seleccionarTodoSinContrasena();
+
+    if(isset($_POST["delete"]) && isset($_POST["id"])){
+        $dlh = $baseDeDatos->eliminarFilas($_POST["id"]);
+
+        header("Location: ./lista.php?success=true");
+
+        exit();
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,19 +32,28 @@
     <link rel="stylesheet" href="./CSS/lista.css">
 </head>
 <body>
-    <div>
+    <form action="" method="POST">
+        <?php if(@$_GET["success"]){ ?>
+            <p>Fila(s) borrada(s) correctamente.</p>
+        <?php } ?>
         <?php if(count($select) != 0){ ?>
             <table border>
                 <caption>Lista de usuarios</caption>
                 <tr>
+                    <th>🗑</th>
                     <?php foreach($select[0] as $key => $value){ ?>
-                        <th><?=$key?></th>
+                        <th><?=ucfirst($key)?></th>
                     <?php } ?>
                 </tr>
                 <?php foreach ($select as $fila){ ?>
                     <tr>
-                        <?php foreach($fila as $columna){ ?>
-                            <td><?=$columna?></td>
+                        <?php foreach($fila as $columna => $dato){ 
+                            if($columna == "id") { ?>
+                                <td><input type="checkbox" name="<?=$columna?>[]" value="<?=$dato?>"></td>
+                                <td><?=$dato?></td>
+                        <?php }else{ ?>
+                                <td><?=$dato?></td>
+                             <?php } ?>
                         <?php } ?>
                     </tr>
                 <?php } ?>
@@ -43,8 +61,8 @@
         <?php }else { ?>
             <h2>No hay usuarios.</h2>
         <?php } ?>
-
+        <input type="submit" name="delete" value="Borrar seleccionados">
         <a href="index.php">Volver</a>
-    </div>
+    </form>
 </body>
 </html>

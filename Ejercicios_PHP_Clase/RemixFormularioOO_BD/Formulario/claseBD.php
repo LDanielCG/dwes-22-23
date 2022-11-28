@@ -8,7 +8,7 @@
                 try{
                     self::$instance = new \PDO($dsn,$user,$pass,$options);
 
-                } catch (PDOException $e) {
+                } catch (\PDOException $e) {
                     print "¡Error!: " . $e->getMessage() . "\n";
                     die();
                 }
@@ -79,6 +79,14 @@
             $stmt->execute();
 
             return $stmt->fetchAll();
+        }
+
+        function eliminarFilas($post){
+            $stmt = self::$instance->prepare(
+                sprintf("DELETE FROM usuarios WHERE id IN (%s)",
+                implode(",", array_fill(0, count($post), "?")))
+            );
+            $stmt->execute($post);
         }
 
         public static function getInstance(){return self::$instance;}

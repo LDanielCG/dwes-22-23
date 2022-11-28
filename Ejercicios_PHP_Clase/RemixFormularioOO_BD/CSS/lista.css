@@ -8,3 +8,13 @@ div {
     align-items: center;
     justify-content: center;
 }
+input {
+    margin: 20px 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
