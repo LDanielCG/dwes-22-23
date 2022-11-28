@@ -49,27 +49,11 @@
         abstract public function pintarCampo();
 
         //Pintar formulario
-        static function pintarFormulario(){ 
-            //Comprobacion de errores
-            if(count(self::getErrores()) > 0){
-                foreach(self::getErrores() as $error){
-                    echo "<p>$error</p>";
-                }
-            }else if(@$_GET["success"]){
-                echo "<p>Se ha creado el usuario.</p>";
+        static function pintarFormulario(){
+            foreach(self::$campos as $campo){
+                $campo->pintarCampo();
             }
-        ?>
-            <form action="index.php" method="post">
-                <h2>Regstrar usuario</h2>
-                <div>
-                    <?php foreach(self::$campos as $campo){
-                        $campo->pintarCampo();
-                    } ?>
-                </div>
-                <input type="submit" value="Enviar" name="submit">
-                <a href="lista.php">Ver usuarios</a>
-            </form>
-        <?php }
+        }
 
         //Getters
         function getTipo()              {   return $this->tipo;         }

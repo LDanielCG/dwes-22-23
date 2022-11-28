@@ -6,37 +6,25 @@
     });
     use Formulario\claseBD;
 
-
+    //Conexión con la BBDD.
     $dsn = 'mysql:host=localhost;dbname=examen';
     $user = $passwd = "examen";
     $options = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
     $baseDeDatos = new claseBD($dsn, $user, $passwd,$options);
 
-    $select = $baseDeDatos->selectAll();
-
-
-
-
-
-
-    $config = Formulario\Controlador::singleton();
-    $usuarios = $config->recuperarUsuarios();
-    $claves = $config->getKeys();
+    //$select = $baseDeDatos->seleccionarTodo();
+    $select = $baseDeDatos->seleccionarTodoSinContrasena();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Listado de usuarios</title>
-    <style>
-        tr {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./CSS/lista.css">
 </head>
 <body>
     <div>
-        <?php if($select->rowCount() != 0){ ?>
+        <?php if(count($select) != 0){ ?>
             <table border>
                 <caption>Lista de usuarios</caption>
                 <tr>
@@ -44,7 +32,7 @@
                         <th><?=$key?></th>
                     <?php } ?>
                 </tr>
-                <?php foreach ($select as $fila) { ?>
+                <?php foreach ($select as $fila){ ?>
                     <tr>
                         <?php foreach($fila as $columna){ ?>
                             <td><?=$columna?></td>

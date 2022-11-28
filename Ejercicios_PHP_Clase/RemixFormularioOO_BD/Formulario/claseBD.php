@@ -17,7 +17,18 @@
 
 
         function insertarValores($user){
-            $stmt = self::$instance->prepare("INSERT INTO usuarios VALUES (
+            $stmt = self::$instance->prepare("INSERT INTO usuarios (
+                nombre, 
+                apellidos, 
+                numero, 
+                contrasena, 
+                fecha, 
+                correo, 
+                sexo, 
+                curso, 
+                estudios,
+                descripcion
+            ) VALUES (
                 :nombre, 
                 :apellidos, 
                 :numero, 
@@ -49,7 +60,25 @@
             $stmt = self::$instance->prepare("SELECT * FROM usuarios");
             $stmt->execute();
 
-            return stmt->fetchAll();
+            return $stmt->fetchAll();
+        }
+
+        function seleccionarTodoSinContrasena(){
+            $stmt = self::$instance->prepare
+            ("SELECT id,
+                    nombre,
+                    apellidos,
+                    numero,
+                    fecha,
+                    correo,
+                    sexo,
+                    curso,
+                    estudios,
+                    descripcion 
+            FROM usuarios");
+            $stmt->execute();
+
+            return $stmt->fetchAll();
         }
 
         public static function getInstance(){return self::$instance;}

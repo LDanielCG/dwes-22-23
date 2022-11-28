@@ -1,8 +1,0 @@
-Text      --Hecho
-Date      --Hecho
-Checkbox  --Hecho
-textArea  --Hecho
-Select	 --Hecho
-Radio	 --Hecho
-number	 --Hecho
-password --Hecho
