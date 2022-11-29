@@ -88,6 +88,28 @@
             );
             $stmt->execute($post);
         }
+        
+        function buscarPorNombre($post){
+            $stmt = self::$instance->prepare
+            ("SELECT id,
+                    nombre,
+                    apellidos,
+                    numero,
+                    fecha,
+                    correo,
+                    sexo,
+                    curso,
+                    estudios,
+                    descripcion 
+            FROM usuarios WHERE nombre LIKE :nombre");
+     
+            $nombre = "%".$post."%";
+            $stmt->bindParam(':nombre', $nombre);
+
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+
 
         public static function getInstance(){return self::$instance;}
         

@@ -15,6 +15,7 @@
     //$select = $baseDeDatos->seleccionarTodo();
     $select = $baseDeDatos->seleccionarTodoSinContrasena();
 
+    //Comprobar si se quiere borrar datos y qué datos se quieren borrar.
     if(isset($_POST["delete"]) && isset($_POST["id"])){
         $dlh = $baseDeDatos->eliminarFilas($_POST["id"]);
 
@@ -22,6 +23,14 @@
 
         exit();
     }
+
+    //Datos a buscar / filtrar.
+    if(isset($_POST["EnviarBusqueda"]) && isset($_POST["buscar"])){
+        $busqueda = $_POST["buscar"];
+
+        $select = $baseDeDatos->buscarPorNombre($busqueda);
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +42,11 @@
 </head>
 <body>
     <form action="" method="POST">
+        <label>
+            Buscar usuario(s): 
+            <input type="text" name="buscar" id="buscar" value="<?=@$_POST['buscar']?>">
+            <button type="submit" name="EnviarBusqueda" value="EnviarBusqueda">Buscar</button>
+        </label>
         <?php if(@$_GET["success"]){ ?>
             <p>Fila(s) borrada(s) correctamente.</p>
         <?php } ?>
@@ -58,10 +72,10 @@
                     </tr>
                 <?php } ?>
             </table>
+            <input type="submit" name="delete" value="Borrar seleccionados">
         <?php }else { ?>
             <h2>No hay usuarios.</h2>
         <?php } ?>
-        <input type="submit" name="delete" value="Borrar seleccionados">
         <a href="index.php">Volver</a>
     </form>
 </body>
