@@ -26,4 +26,4 @@ Consultas:
     Select
     Insert
     Delete
-    Update
+    Update <tabla> set <campo>=<campo> where <condicion>;
