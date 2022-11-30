@@ -50,11 +50,11 @@
     //Apartado 3
 
     echo "<h2>Apartado 3</h2>";
-    function apartado3($usr, $clave){
-        if ($usr == ""){
-            $usr = "tmp2022";
+    function apartado3($clave, $valor){
+        if ($clave == ""){
+            $clave = "tmp2022";
         }
-        echo "Usuario: " . $clave . " // Contraseña: " . $usr . "<br>";
+        echo "Usuario: " . $valor . " // Contraseña: " . $clave . "<br>";
     }
     array_walk($usuarios, 'apartado3');
     echo "<br><br>";

@@ -12,13 +12,14 @@
 
 class CuentaBancaria {
 
-    private static $numeroCuenta = 100001;
+    private static $numeroCuentaCont = 100001;
+    private $numeroCuenta;
     private $nombre;
     private $saldo;
 
 
     function __construct($nombre = 'anonimo',$saldo = 0){
-        $this->numeroCuenta = self::$numeroCuenta++;
+        $this->numeroCuenta = self::$numeroCuentaCont++;
         $this->nombre = $nombre;
         $this->saldo = $saldo;
     }

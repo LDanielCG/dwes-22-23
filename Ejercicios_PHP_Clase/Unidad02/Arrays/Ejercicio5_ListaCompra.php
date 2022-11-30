@@ -90,7 +90,7 @@ if(count($_GET)>0) {
             <?php array_walk($factura, 'pintaFactura') ?>
             <tr><td colspan=4><?= array_reduce($factura, 'total') ?></td></tr>
         </table>
-        <a href="ejercicio5.php">Volver a calcular</a>
+        <a href="Ejercicio5_ListaCompra.php">Volver a calcular</a>
     <?php } ?>
 </body>
 </html>

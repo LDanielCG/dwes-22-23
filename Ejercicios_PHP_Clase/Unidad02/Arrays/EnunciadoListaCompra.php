@@ -22,7 +22,7 @@
             }      
             echo '<input type="number" min="0" max="15" value="'. $numProds .'" name="'. $nomFruta .'"> ' . '<label>' . $nomFruta . ': ' . $precFruta . ' €</label><br/>';
                         
-            if($_GET[$nomFruta] != 0){
+            if(@$_GET[$nomFruta] != 0){
                 echo '<p class="resultado">x'.$numProds. ' ' .$nomFruta.': ' . ($precFruta*$numProds) . ' €</p>';
                 $precioTotal += ($precFruta*$numProds);
             }

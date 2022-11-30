@@ -39,7 +39,7 @@
         function analizParámetros(... $param){
             $arr = [];
             foreach($param as $key => $value){
-                $arr[gettype($value)] += 1;
+                @$arr[gettype($value)] += 1;
             }            
             return $arr;
         }
