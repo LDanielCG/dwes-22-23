@@ -1,0 +1,22 @@
+paginas:
+    publica.php
+
+    privada1.php
+    privada2.php
+    privada3.php
+    premio.php
+
+login.php
+
+    formulario:
+        user
+        pass
+        hidden con la url a la que se quiere redirigir (en la url como get hacia el campo hidden y del hidden al post).
+
+        cuando se envia hace una consulta a la tabla usuarios.
+        busca el usuario
+            si lo encuentra compara el hash de la pass con la introducida.
+            si es correcta se hace un $_SESSION['user'] = 'usuario'; y un header redirect a la url del hidden.
+
+logout.php
+    $_SESSION['user] = 0;
