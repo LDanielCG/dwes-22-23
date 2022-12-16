@@ -1,20 +1,19 @@
+<?php
+    include("defaultValues.php");
+?>
 <style>
     body {
-        background-color: <?= (isset($_COOKIE['BG']))?$_COOKIE['BG']:"white"?>;
-        color: <?= (isset($_COOKIE['FG']))?$_COOKIE['FG']:"black"?>;
+        background-color: <?=$BG?>;
+        color: <?=$FG?>;
     }
 
     form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         border: 2px solid black;
         width: fit-content;
         padding: 10px;
         background-color: rgba(189, 189, 189, 0.5);
     }
-    .cont {
+    .cont, form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,7 +22,6 @@
     label {
         margin: 5px;
     }
-
 
     .menu {
         display: flex;
@@ -42,7 +40,7 @@
     }
     .menu a {
         background-color: rgba(189, 189, 189, 0.5);
-        color: <?= (isset($_COOKIE['FG']))?$_COOKIE['FG']:"black"?>;
+        color: <?=$FG?>;
         padding: 15px;
         width: 150px;
         text-align: center;

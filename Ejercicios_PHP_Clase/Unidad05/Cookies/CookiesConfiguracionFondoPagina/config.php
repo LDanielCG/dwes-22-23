@@ -6,9 +6,7 @@
         }
         header("Location: config.php");
     }
-    $BG = $_COOKIE['BG'];
-    $FG = $_COOKIE['FG'];
-    $NAME = $_COOKIE['NAME'];
+    include("defaultValues.php");
 
     echo "COOKIES: <br>";
     print_r($_COOKIE);
