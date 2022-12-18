@@ -1,4 +1,5 @@
 <div class="menu">
+  <a href="publico.php">Publico</a>
   <a href="privado1.php">privada1</a>
   <a href="privado2.php">privada2</a>
   <a href="privado3.php">privada3</a>

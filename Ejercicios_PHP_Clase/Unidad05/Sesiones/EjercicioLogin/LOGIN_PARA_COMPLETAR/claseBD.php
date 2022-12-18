@@ -14,67 +14,8 @@
             }
         }
 
-
-        function insertarValores($user){
-            $stmt = self::$instance->prepare("INSERT INTO usuarios (
-                nombre, 
-                apellidos, 
-                numero, 
-                contrasena, 
-                fecha, 
-                correo, 
-                sexo, 
-                curso, 
-                estudios,
-                descripcion
-            ) VALUES (
-                :nombre, 
-                :apellidos, 
-                :numero, 
-                :contrasena, 
-                :fecha, 
-                :correo, 
-                :sexo, 
-                :curso, 
-                :estudios,
-                :descripcion
-            )");
-
-            $stmt->execute([
-                ":nombre"       => $user->getNombre()->getDatos(),
-                ":apellidos"    => $user->getApellidos()->getDatos(),
-                ":numero"       => $user->getNumero()->getDatos(),
-                ":contrasena"   => password_hash($user->getContraseña()->getDatos(), PASSWORD_DEFAULT),
-                ":fecha"        => $user->getFecha()->getDatos(),
-                ":correo"       => $user->getCorreo()->getDatos(),
-                ":sexo"         => $user->getSexo()->getDatos(),
-                ":curso"        => $user->getCurso()->getDatos(),
-                ":estudios"     => implode(";", $user->getEstudios()->getDatos()),
-                ":descripcion"  => $user->getDescripcion()->getDatos()
-            ]);
-        }
-
-
         function seleccionarTodo(){
             $stmt = self::$instance->prepare("SELECT * FROM usuarios");
-            $stmt->execute();
-
-            return $stmt->fetchAll();
-        }
-
-        function seleccionarTodoSinContrasena(){
-            $stmt = self::$instance->prepare
-            ("SELECT id,
-                    nombre,
-                    apellidos,
-                    numero,
-                    fecha,
-                    correo,
-                    sexo,
-                    curso,
-                    estudios,
-                    descripcion 
-            FROM usuarios");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -88,22 +29,12 @@
             $stmt->execute($post);
         }
         
-        function buscarPorNombre($post){
+        function buscarPorMail($post){
             $stmt = self::$instance->prepare
-            ("SELECT id,
-                    nombre,
-                    apellidos,
-                    numero,
-                    fecha,
-                    correo,
-                    sexo,
-                    curso,
-                    estudios,
-                    descripcion 
-            FROM usuarios WHERE nombre LIKE :nombre");
+            ("SELECT * FROM usuarios WHERE email LIKE :email");
      
-            $nombre = "%".$post."%";
-            $stmt->bindParam(':nombre', $nombre);
+            $email = "%".$post."%";
+            $stmt->bindParam(':email', $email);
 
             $stmt->execute();
             return $stmt->fetchAll();

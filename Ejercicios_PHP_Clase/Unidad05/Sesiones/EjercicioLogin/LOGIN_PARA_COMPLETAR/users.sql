@@ -1,9 +1,9 @@
-CREATE TABLE `usuarios` (
-  `id` MEDIUMINT NOT NULL AUTO_INCREMENT,
-  `email`       varchar(255) NOT NULL ,
-  `pass`        varchar(255) NOT NULL ,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+CREATE TABLE usuarios (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  pass varchar(255) NOT NULL,
+  PRIMARY KEY (id)
+);
 
 -- Todas las contraseñas son 1234
 

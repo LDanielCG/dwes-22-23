@@ -19,4 +19,4 @@ login.php
             si es correcta se hace un $_SESSION['user'] = 'usuario'; y un header redirect a la url del hidden.
 
 logout.php
-    $_SESSION['user] = 0;
+    $_SESSION['user'] = 0;
