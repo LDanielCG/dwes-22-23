@@ -9,16 +9,13 @@ function clean_input($data) {
 }
 
 $login = "";
-$pass = "";
+$password = "";
 $errorList = [];
 
 if(isset($_GET["error"])){
   $errorList[] = "Necesitas estar logueado para acceder a ".$_GET["error"];
 }
 
-if(isset($_COOKIE['url'])){
-  $url = $_COOKIE['url'];
-}
 
 if(isset($_POST["submit"])) {
     if(isset($_POST["login"])){
@@ -75,6 +72,7 @@ if(isset($_POST["submit"])) {
         //Inicia la sesion con el usuario de login.
         session_start();
         $_SESSION['user'] = $login;
+        $url = $_SESSION['url'];
 
         //Redirección a la pagina que se queria visitar.
         header('Location: '.$url);

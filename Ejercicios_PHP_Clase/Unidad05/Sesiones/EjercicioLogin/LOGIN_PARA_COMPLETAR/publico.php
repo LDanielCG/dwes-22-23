@@ -1,10 +1,5 @@
 <?php
-    session_start();
-    if( !isset($_SESSION['user']) ){
-        $url = @end(explode('/', $_SERVER['REQUEST_URI']));
-        setcookie("url",$url);
-    }
-    print_r($_SESSION);
+  include("checkLoginPublic.php");
 ?>
 
 <html>
