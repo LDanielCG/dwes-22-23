@@ -1,6 +1,7 @@
+DROP TABLE usuarios;
 CREATE TABLE usuarios (
   id int NOT NULL AUTO_INCREMENT,
-  email varchar(255) NOT NULL,
+  email varchar(255) NOT NULL UNIQUE,
   pass varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );

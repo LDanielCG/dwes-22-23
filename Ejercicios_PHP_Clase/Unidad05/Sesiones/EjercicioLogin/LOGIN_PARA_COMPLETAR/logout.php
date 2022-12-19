@@ -1,11 +1,8 @@
 <?php
     session_start();
-    if( !isset($_SESSION['user']) ){
-        header('Location: publico.php');
-        exit;
-    }else{
-        unset($_SESSION['user']);
-        header('Location: publico.php');
-        exit;
-    }
+    
+    if( isset($_SESSION['user']) ){ unset($_SESSION['user']); }
+
+    header('Location: publico.php');
+    exit;
 ?>

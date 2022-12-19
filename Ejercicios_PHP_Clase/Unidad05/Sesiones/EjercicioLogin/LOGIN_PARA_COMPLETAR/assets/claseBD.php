@@ -28,11 +28,11 @@
             );
             $stmt->execute($post);
         }
-        
+
         function buscarPorMail($post){
             $stmt = self::$instance->prepare
             ("SELECT * FROM usuarios WHERE email LIKE :email");
-     
+
             $email = "%".$post."%";
             $stmt->bindParam(':email', $email);
 
@@ -40,8 +40,6 @@
             return $stmt->fetchAll();
         }
 
-
         public static function getInstance(){return self::$instance;}
-        
     }
 ?>
