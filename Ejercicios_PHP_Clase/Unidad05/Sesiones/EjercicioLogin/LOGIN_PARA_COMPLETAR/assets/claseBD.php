@@ -33,7 +33,7 @@
             $stmt = self::$instance->prepare
             ("SELECT * FROM usuarios WHERE email LIKE :email");
 
-            $email = "%".$post."%";
+            $email = $post;
             $stmt->bindParam(':email', $email);
 
             $stmt->execute();

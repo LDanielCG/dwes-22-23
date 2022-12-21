@@ -1,5 +1,5 @@
 <?php
-    include('./getURL_SESSION.php');
+    require_once('./getURL_SESSION.php');
 
     if( !isset($_SESSION['user']) ){
         header('Location: login.php?error=Acceso denegado&url='.$url);

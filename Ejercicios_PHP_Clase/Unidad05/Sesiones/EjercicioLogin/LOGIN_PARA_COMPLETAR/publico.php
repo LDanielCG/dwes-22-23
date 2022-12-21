@@ -1,4 +1,4 @@
-<?php include('./getURL_SESSION.php'); print_r($_SESSION);?>
+<?php require_once('./getURL_SESSION.php'); print_r($_SESSION);?>
 
 <html>
 <head>

@@ -1,5 +1,5 @@
 <?php
-include_once("./assets/claseBD.php");
+require_once("./assets/claseBD.php");
 
 function clean_input($data){
     $data = trim($data);
@@ -11,7 +11,13 @@ function clean_input($data){
 $login = "";
 $password = "";
 $errorList = [];
-$url = isset($_POST['hiddenURL']) ? $_POST['hiddenURL'] : '';
+//$url = isset($_POST['hiddenURL']) ? $_POST['hiddenURL'] : '';
+$url = "";
+if( isset($_GET['url']) ){
+    $url = $_GET['url'];
+}else if( isset($_POST['hiddenURL']) ){
+    $url = $_POST['hiddenURL'];
+}
 
 //Si se loguea desde login.
 if (empty($url)) { $url = isset($_GET['url']) ? $_GET['url'] : './publico.php'; }

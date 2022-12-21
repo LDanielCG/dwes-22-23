@@ -1,4 +1,4 @@
-<?php include("./checkLogin.php"); ?>
+<?php require_once("./checkLogin.php"); ?>
 
 <html>
 <head>
