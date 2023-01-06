@@ -27,10 +27,10 @@
 
         //Pintar campo.
         function pintarCampo(){ ?>
-            <label>
+            <label class="campo-correo" for="<?=$this->nombre?>">
                 <?=ucfirst($this->nombre)?>:
-                <input required type="<?=$this->tipo?>" name="<?=$this->nombre?>" value="<?=$this->datos?>" placeholder="<?=$this->placeholder?>">
             </label>
+            <input type="<?=$this->tipo?>" name="<?=$this->nombre?>" id="<?=$this->nombre?>" value="<?=$this->datos?>" placeholder="<?=$this->placeholder?>">
         <?php }
     }
 ?>

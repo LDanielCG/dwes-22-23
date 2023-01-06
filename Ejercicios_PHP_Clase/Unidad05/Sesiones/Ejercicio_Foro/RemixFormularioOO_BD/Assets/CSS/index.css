@@ -14,6 +14,26 @@ label {display: none;}
     font-weight: bold;
 }
 
+.error {
+    width: 600px;
+    color: #ffbebe;
+    background-color: #482e2e;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.login-alert-mensaje {
+    width: 600px;
+    background-color: #2e3948;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+}
+.login-alert-mensaje p {margin: 0; padding: 0;}
+.login-alert-mensaje a, .login-alert-mensaje a:visited {color: #bed8ff;}
+
+
+
 .escribir-mensaje-Cont { 
     display: flex; 
     flex-direction: row; 
@@ -86,4 +106,10 @@ label {display: none;}
     margin: 2px;
     color: #4f5b6b;
 }
+.mensaje-detalle {
+    font-weight: bold;
+    text-decoration: none;
+    font-style: italic;
+}
+
 .subtitulo { color: #a8a9aa; }

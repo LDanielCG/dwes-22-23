@@ -6,7 +6,7 @@
         protected $longitudMaxima;
 
         //Constantes.
-        const MIN_LENGTH = 8;
+        const MIN_LENGTH = 4;
         const  MAX_LENGTH = 64;
         const REGEX_LETRAS_NUMEROS_BARRA_BAJA = "[\w]";
 
@@ -32,16 +32,16 @@
             $regexCompleto = "/". $this->regex ."{".$this->longitudMinima.",".$this->longitudMaxima."}/";
 
             if(!preg_match($regexCompleto, $this->datos)){
-                parent::$errores[$this->nombre] = ucfirst($this->nombre) . " no válida. Longitud mínima: ".$this->longitudMinima." carácteres y longitud máxima: ".$this->longitudMaxima.".";
+                parent::$errores[$this->nombre] = ucfirst($this->nombre) . " no válida.";
             }
         }
 
         //Pintar campo.
         function pintarCampo(){ ?>
-            <label>
+            <label class="campo-password" for="<?=$this->nombre?>">
                 <?=ucfirst($this->nombre)?>:
-                <input required type="<?=$this->tipo?>" name="<?=$this->nombre?>" value="<?=$this->datos?>" placeholder="<?=$this->placeholder?>">
             </label>
+            <input type="<?=$this->tipo?>" name="<?=$this->nombre?>" id="<?=$this->nombre?>" value="<?=$this->datos?>" placeholder="<?=$this->placeholder?>">
         <?php }
     }
 ?>

@@ -75,7 +75,23 @@
             ]);
         }
 
+        function registrarUsuario($user){
+            $stmt = self::$instance->prepare("INSERT INTO usuarios_foro (
+                username, 
+                correo, 
+                contrasena
+            ) VALUES (
+                :username,
+                :correo,
+                :contrasena
+            )");
 
+            $stmt->execute([
+                ":username"       => $user->getUsername()->getDatos(),
+                ":correo"         => $user->getCorreo()->getDatos(),
+                ":contrasena"     => password_hash($user->getContraseña()->getDatos(), PASSWORD_DEFAULT),
+            ]);
+        }
 
         function seleccionarTodo(){
             $stmt = self::$instance->prepare("SELECT * FROM usuarios");
@@ -86,10 +102,13 @@
 
         function seleccionarMensajes(){
             $stmt = self::$instance->prepare
-            ("SELECT username,
-                    fecha_hora,
-                    cuerpoMensaje
-            FROM usuarios_foro,mensajes_foro WHERE usuarios_foro.id_user = mensajes_foro.id_user");
+            ("SELECT username, 
+                     fecha_hora, 
+                     cuerpoMensaje, 
+                     id_msg, 
+                     mensajes_foro.id_user 
+            FROM usuarios_foro, mensajes_foro WHERE usuarios_foro.id_user = mensajes_foro.id_user ORDER BY fecha_hora DESC;
+            ");
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -132,7 +151,7 @@
             $stmt->bindParam(':correo', $email);
 
             $stmt->execute();
-            return $stmt->fetchAll();
+            return $stmt->fetch();
         }
 
         public static function getInstance(){return self::$instance;}

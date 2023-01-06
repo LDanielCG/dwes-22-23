@@ -23,6 +23,10 @@
         //Validación específica.
         function validar(){
             parent::cleanData($this->datos);
+
+            if(strlen($this->datos) == 0) {
+                parent::$errores[$this->nombre] = "El contenido del mensaje no puede estar vacío."; 
+            }
         }
 
         //Pintar campo.

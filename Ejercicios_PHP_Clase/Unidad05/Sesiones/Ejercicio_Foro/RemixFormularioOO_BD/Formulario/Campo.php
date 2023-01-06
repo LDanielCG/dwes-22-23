@@ -54,7 +54,7 @@
             //Comprobacion de errores
             if(count(self::getErrores()) > 0){
                 foreach(self::getErrores() as $error){
-                    echo "<p>$error</p>";
+                    echo "<p class='error'>$error</p>";
                 }
             }else if(@$_GET["success"]){
                 echo "<p class='success'>Post publicado con exito.</p>";
@@ -67,6 +67,47 @@
                 </div>
             </form>
         <?php }
+
+
+        static function pintarFormularioLogin(){ 
+            //Comprobacion de errores
+            echo "<div class='error-cont'>";
+                if(count(self::getErrores()) > 0){
+                    foreach(self::getErrores() as $error){
+                        echo "<p class='error'>$error</p>";
+                    }
+                }
+            echo "</div>";
+        ?>
+            <form action="login_v2.php" method="post">
+                <div class="login-Cont">
+                    <h2>Iniciar Sesión</h2>
+                    <?php foreach(self::$campos as $campo){ $campo->pintarCampo(); } ?>
+                    <p class='login-registrar'>¿Aún no estas registrado? <a href="./signUp.php">Registrate aquí</a></p>
+                    <input type="submit" value="Login" name="submit" class="login-Enviar">
+                </div>
+            </form>
+        <?php }
+
+        static function pintarFormularioSignUp(){ 
+            //Comprobacion de errores
+            echo "<div class='error-cont'>";
+                if(count(self::getErrores()) > 0){
+                    foreach(self::getErrores() as $error){
+                        echo "<p class='error'>$error</p>";
+                    }
+                }
+            echo "</div>";
+        ?>
+            <form action="signUp.php" method="post">
+                <div class="login-Cont">
+                    <h2>Registrarse</h2>
+                    <?php foreach(self::$campos as $campo){ $campo->pintarCampo(); } ?>
+                    <input type="submit" value="Registrarse" name="submit" class="login-Enviar">
+                </div>
+            </form>
+        <?php }
+
 
         //Getters
         function getTipo()              {   return $this->tipo;         }
@@ -82,5 +123,6 @@
         function setDatos($dat)         {   $this->datos = $dat;        }
         function setPlaceholder($plac)  {   $this->placeholder = $plac; }
         function setRegex($reg)         {   $this->regex = $reg;        }
+        static function addErrores($err){   self::$errores[] = $err;    }
     }
 ?>

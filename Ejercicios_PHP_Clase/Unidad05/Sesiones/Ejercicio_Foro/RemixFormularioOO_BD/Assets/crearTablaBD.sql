@@ -1,9 +1,12 @@
+SET FOREIGN_KEY_CHECKS=OFF;
+SET FOREIGN_KEY_CHECKS=ON;
+
 DROP TABLE usuarios_foro;
 
 CREATE TABLE usuarios_foro(
     id_user int NOT NULL AUTO_INCREMENT,
-    username varchar(25) NOT NULL,
-    correo varchar(30) NOT NULL,
+    username varchar(25) UNIQUE NOT NULL,
+    correo varchar(30) UNIQUE NOT NULL,
     contrasena varchar(255) NOT NULL,
     PRIMARY KEY (id_user)
 );
@@ -34,4 +37,8 @@ CREATE TABLE respuestas_foro(
 
 INSERT INTO usuarios_foro (username, correo, contrasena) VALUES (
   'danieh', 'danieh@mail.es', '$2y$10$2IBLoO9c2NqscjxBqKSZhe0KUTs8FeCQpXi.H4S5N8qK2GbMAQX0a'
+);
+
+INSERT INTO usuarios_foro (username, correo, contrasena) VALUES (
+  'admin', 'admin@mail.es', '$2y$10$oUK2psl33/ISPfWU/RnnheZcN5So6SPFTpmdD6S6WMudkLvHY7eaa'
 );

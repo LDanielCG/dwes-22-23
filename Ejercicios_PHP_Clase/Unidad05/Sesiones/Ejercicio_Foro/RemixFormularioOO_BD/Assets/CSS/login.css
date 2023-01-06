@@ -1,0 +1,88 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+body { background-color: #161B22; }
+
+.login-Cont {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.login-Cont input{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 2px;
+    border: 2px solid #2a6fcf;
+}
+.login-Cont input:focus-visible {
+    outline:none;
+    border: 2px solid #5379aa;
+}
+
+.login-Cont input[type=submit]{
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #4c607c;
+    background-color: #5379aa;
+    transition: 0.3s;
+}
+.login-Cont input[type=submit]:hover{
+    cursor:pointer;
+    background-color: #4c607c;
+    border: 2px solid #5379aa;
+}
+.login-Cont label {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.error-cont {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-registrar {
+    color:white;
+    font-size: small;
+}
+.login-registrar a, .login-registrar a:visited {
+    color:#6491cc;
+    font-size: small;
+    font-weight: bold;
+}
+
+
+
+.error {
+    width: 600px;
+    color: #ffbebe;
+    background-color: #482e2e;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #ffbebe;
+    margin: 2px;
+}
+form {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+label {
+    color: white;
+}
+
+h2{ color:white;}
+
+label[for=confirm_email], label[for=confirm_password]{
+    display: none;
+}

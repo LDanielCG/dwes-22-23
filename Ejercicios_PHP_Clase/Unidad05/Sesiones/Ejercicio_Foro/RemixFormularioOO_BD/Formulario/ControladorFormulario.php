@@ -6,11 +6,9 @@
         //Propiedades del usuario.
         private $id_user;        //CampoHidden
         private $fecha_hora;     //CampoNumero
-        private $tema;          //CampoTexto
+        private $username;          //CampoTexto
         private $contraseña;    //CampoPassword
-        private $fecha;         //CampoFecha
         private $correo;        //CampoCorreo
-
         private $cuerpoMensaje;   //CampoTextArea
 
         public static function singleton(){
@@ -22,7 +20,6 @@
 
 
         //Creacion de los campos.
-
         public function crearCampos($post){
             //Campos                  Tipo_campo    | nombre        | datos_campo           | Placeholder & Opciones Radio,Select,Checkbox  | Regex     | MinLength     | MaxLength
             $this->nombre       = new CampoTexto    ("Nombre"       , $post["Nombre"]       , "Tu nombre."                                   );
@@ -40,18 +37,24 @@
         public function crearCamposPublicacion($post){
             //Campos                  Tipo_campo      | nombre          | datos_campo             | Placeholder             | MaxLength
             $this->id_user        = new CampoHidden   ("id_user"        , $post['id_user']);
-            //$this->fecha_hora     = new CampoNumero   ("fechaHora"      , $post['fechaHora']);
             //$this->tema           = new CampoTexto    ("tema"           , $post['tema']);
             $this->cuerpoMensaje  = new CampoTextArea ("CuerpoMensaje"  , $post["CuerpoMensaje"]  , "¿Qué está pasando?"    , 128);
         }
 
+        public function crearCamposLogin($post){
+            $this->correo       = new CampoCorreo   ("login", $post["login"], "ejemplo@correo.es");
 
+            $this->contraseña   = new CampoPassword ("password", $post["password"], "Tu contraseña.");
+        }
 
+        public function crearCamposSignUp($post){
+            $this->username     = new CampoTexto    ("Nombre de usuario", $post['username'], "Nombre de usuario");
+            $this->correo       = new CampoCorreo   ("E-mail", $post["email"], "ejemplo@correo.es");
+            $this->correo       = new CampoCorreo   ("confirm_email", $post["confirm_email"], "Confirma tu e-mail");
+            $this->contraseña   = new CampoPassword ("password", $post["password"], "Tu contraseña");
+            $this->contraseña   = new CampoPassword ("confirm_password", $post["confirm_password"], "Confirma tu contraseña");
 
-
-
-
-
+        }
 
         //Validacion del formulario.
         public function validarFormulario(){
@@ -62,6 +65,11 @@
 
         public function validarCuerpoMensaje(){
             $this->cuerpoMensaje->validar();
+        }
+
+        public function validarCamposLogin(){
+            $this->correo->validar();
+            $this->contraseña->validar();
         }
 
         //Validación de errores.
@@ -86,6 +94,19 @@
             }
         }
 
+
+        public function esValidoLogin(){
+            self::validarCamposLogin();
+
+            if(!empty($this->correo->getErrores()) && !empty($this->contraseña->getErrores())){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        
+
         //Recuperar claves.
         public function getKeys(){
             $keys = [];
@@ -99,23 +120,20 @@
         //Getters.
         public function getId_user()       {   return $this->id_user;       }
         public function getFecha_hora()    {   return $this->fecha_hora;    }
-        public function getTema()          {   return $this->tema;          }
+        public function getUsername()      {   return $this->username;      }
         public function getContraseña()    {   return $this->contraseña;    }
         public function getFecha()         {   return $this->fecha;         }
         public function getCorreo()        {   return $this->correo;        }
-
         public function getCuerpoMensaje() {   return $this->cuerpoMensaje; }
 
         //Setters.
-        public function setId_user($nom)            {   $this->id_user     = $nom;     }
-        public function setFecha_hora($dat)         {   $this->fecha_hora    = $dat;     }
-        public function setTema($tem)               {   $this->tema       = $tem;     }
-        public function setContraseña($contr)       {   $this->contraseña   = $contr;   }
-        public function setFecha($fec)              {   $this->fecha        = $fec;     }
-        public function setCorreo($corr)            {   $this->correo       = $corr;    }
-
+        public function setId_user($nom)            {   $this->id_user        = $nom;   }
+        public function setFecha_hora($dat)         {   $this->fecha_hora     = $dat;   }
+        public function setUsername($uname)         {   $this->username       = $uname; }
+        public function setContraseña($contr)       {   $this->contraseña     = $contr; }
+        public function setFecha($fec)              {   $this->fecha          = $fec;   }
+        public function setCorreo($corr)            {   $this->correo         = $corr;  }
         public function setCuerpoMensaje($cuerp)    {   $this->cuerpoMensaje  = $cuerp; }
-
 
     }
 ?>
