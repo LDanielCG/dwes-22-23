@@ -26,8 +26,50 @@
             \Formulario\Campo::pintarFormularioMensaje(); 
         }else{
             echo "<div class='login-alert-mensaje'>";
-            echo "<p>Para realizar publicaciones inicia sesión: <a href='./login_v2.php'>Iniciar sesión</a></p>";
+            echo "<p>Para realizar publicaciones, inicia sesión <a href='./login_v2.php'>aquí</a></p>";
             echo "</div>";
+        }
+    }
+
+
+    function pintarMensajes($selectMensajes){
+        if(!empty($selectMensajes)) {
+            foreach ($selectMensajes as $fila){ ?>
+                <div class="mensaje-Cont">
+                    <div class="mensaje-userPic">
+                        <img src="./Assets/img/userPic.png" alt="userPic">
+                    </div>
+                    <div class="mensaje-cabecera-y-cuerpo">
+                        <div class="mensaje-cabecera">
+                            <?php foreach($fila as $columna => $dato){ 
+                                if($columna == "username") {
+                                    echo "<p class='mensaje-nombreUsuario'>$dato</p>";
+                                }else if($columna == "fecha_hora"){
+                                    echo "<p class='mensaje-separador subtitulo'> · </p>";
+                                    echo "<p class='mensaje-fechaHora subtitulo'>".date("d/m/Y H:i",$dato)."</p>";
+                                    echo "<p class='mensaje-separador subtitulo'> · </p>";
+                                    echo "<a class='mensaje-detalle subtitulo' href='./detalle.php?id_msg=".$fila['id_msg']."&id_user=".$fila['id_user']."'>Ver detalle</a>";
+                                }
+                            } ?>
+                        </div>
+                        <div class="mensaje-cuerpo">
+                            <?php foreach($fila as $columna => $dato){ 
+                                if($columna == "cuerpoMensaje") {
+                                    echo "<p>".$dato."</p>";
+                                }
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+        } else {
+            echo "<h2>No hay publicaciones, ¿por qué no haces una?</h2>";
+        }
+    }
+
+    function checkRegister(){
+        if(@$_GET['registro'] == "success"){
+            echo "<p class='success'>Se ha registrado con exito.</p>";
         }
     }
 
@@ -37,57 +79,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Foro - Index</title>
-    <link rel="stylesheet" href="./Assets/CSS/index.css">
     <link rel="stylesheet" href="./Assets/CSS/header.css">
+    <link rel="stylesheet" href="./Assets/CSS/index.css">
 </head>
 <body>
     <?php require_once("./header.php") ?>
-    
-    <?php print_r($_SESSION)?>
-
-
-
-
-
-
-
-
-
-
     <div class="mensajes-Cont">
-
+        <?php checkRegister() ?>
         <?php enviarMensaje() ?>
-
-
-
-        <?php foreach ($selectMensajes as $fila){ ?>
-            <div class="mensaje-Cont">
-                <div class="mensaje-userPic">
-                    <img src="./Assets/img/userPic.png" alt="userPic">
-                </div>
-                <div class="mensaje-cabecera-y-cuerpo">
-                    <div class="mensaje-cabecera">
-                        <?php foreach($fila as $columna => $dato){ 
-                            if($columna == "username") {
-                                echo "<p class='mensaje-nombreUsuario'>$dato</p>";
-                            }else if($columna == "fecha_hora"){
-                                echo "<p class='mensaje-separador subtitulo'> · </p>";
-                                echo "<p class='mensaje-fechaHora subtitulo'>".date("d/m/Y H:i",$dato)."</p>";
-                                echo "<p class='mensaje-separador subtitulo'> · </p>";
-                                echo "<a class='mensaje-detalle subtitulo' href='./detalle.php?id_msg=".$fila['id_msg']."&id_user=".$fila['id_user']."'>Ver detalle</a>";
-                            }
-                        } ?>
-                    </div>
-                    <div class="mensaje-cuerpo">
-                        <?php foreach($fila as $columna => $dato){ 
-                            if($columna == "cuerpoMensaje") {
-                                echo "<p>".$dato."</p>";
-                            }
-                        } ?>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
+        <?php pintarMensajes($selectMensajes) ?>
     </div>
 </body>
 </html>

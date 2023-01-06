@@ -5,6 +5,9 @@
 
         //Propiedades del usuario.
         private $id_user;        //CampoHidden
+        private $id_msg_r;
+        private $id_user_r;
+
         private $fecha_hora;     //CampoNumero
         private $username;          //CampoTexto
         private $contraseña;    //CampoPassword
@@ -41,6 +44,19 @@
             $this->cuerpoMensaje  = new CampoTextArea ("CuerpoMensaje"  , $post["CuerpoMensaje"]  , "¿Qué está pasando?"    , 128);
         }
 
+        public function crearCamposRespuesta($post){
+            //Campos                  Tipo_campo      | nombre          | datos_campo             | Placeholder             | MaxLength
+            $this->id_user        = new CampoHidden   ("id_user"        , $post['id_user']);
+
+            $this->id_msg_r        = new CampoHidden   ("id_msg_r"        , $post['id_msg']);
+
+            $this->id_user_r        = new CampoHidden   ("id_user_r"        , $post['id_user']);
+            
+            //$this->tema           = new CampoTexto    ("tema"           , $post['tema']);
+            $this->cuerpoMensaje  = new CampoTextArea ("CuerpoMensaje"  , $post["CuerpoMensaje"]  , "¿Qué está pasando?"    , 128);
+        }
+
+
         public function crearCamposLogin($post){
             $this->correo       = new CampoCorreo   ("login", $post["login"], "ejemplo@correo.es");
 
@@ -48,8 +64,8 @@
         }
 
         public function crearCamposSignUp($post){
-            $this->username     = new CampoTexto    ("Nombre de usuario", $post['username'], "Nombre de usuario");
-            $this->correo       = new CampoCorreo   ("E-mail", $post["email"], "ejemplo@correo.es");
+            $this->username     = new CampoTexto    ("username", $post['username'], "Nombre de usuario");
+            $this->correo       = new CampoCorreo   ("e-mail", $post["e-mail"], "ejemplo@correo.es");
             $this->correo       = new CampoCorreo   ("confirm_email", $post["confirm_email"], "Confirma tu e-mail");
             $this->contraseña   = new CampoPassword ("password", $post["password"], "Tu contraseña");
             $this->contraseña   = new CampoPassword ("confirm_password", $post["confirm_password"], "Confirma tu contraseña");
@@ -119,6 +135,9 @@
 
         //Getters.
         public function getId_user()       {   return $this->id_user;       }
+        public function getId_user_r()     {   return $this->id_user_r;     }
+        public function getId_msg_r()      {   return $this->id_msg_r;     }
+
         public function getFecha_hora()    {   return $this->fecha_hora;    }
         public function getUsername()      {   return $this->username;      }
         public function getContraseña()    {   return $this->contraseña;    }
@@ -128,6 +147,9 @@
 
         //Setters.
         public function setId_user($nom)            {   $this->id_user        = $nom;   }
+        public function setId_user_r($nom)          {   $this->id_user_r      = $nom;   }
+        public function setId_msg_r($msg)           {   $this->id_msg_r       = $msg;   }
+
         public function setFecha_hora($dat)         {   $this->fecha_hora     = $dat;   }
         public function setUsername($uname)         {   $this->username       = $uname; }
         public function setContraseña($contr)       {   $this->contraseña     = $contr; }

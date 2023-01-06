@@ -69,6 +69,24 @@
         <?php }
 
 
+        static function pintarFormularioRespuesta(){ 
+            //Comprobacion de errores
+            if(count(self::getErrores()) > 0){
+                foreach(self::getErrores() as $error){
+                    echo "<p class='error'>$error</p>";
+                }
+            }else if(@$_GET["success"]){
+                echo "<p class='success'>Respuesta publicada con exito.</p>";
+            }
+        ?>
+            <form action="" method="post">
+                <div class="escribir-mensaje-Cont">
+                    <?php foreach(self::$campos as $campo){ $campo->pintarCampo(); } ?>
+                    <input type="submit" value="Enviar" name="submit" class="escribir-mensaje-Enviar">
+                </div>
+            </form>
+        <?php }
+
         static function pintarFormularioLogin(){ 
             //Comprobacion de errores
             echo "<div class='error-cont'>";
@@ -103,6 +121,7 @@
                 <div class="login-Cont">
                     <h2>Registrarse</h2>
                     <?php foreach(self::$campos as $campo){ $campo->pintarCampo(); } ?>
+                    <p class='login-registrar'>¿Ya tienes una cuenta? Inicia sesión <a href="./login_v2.php">aquí</a></p>
                     <input type="submit" value="Registrarse" name="submit" class="login-Enviar">
                 </div>
             </form>

@@ -32,7 +32,7 @@ label {display: none;}
 .login-alert-mensaje p {margin: 0; padding: 0;}
 .login-alert-mensaje a, .login-alert-mensaje a:visited {color: #bed8ff;}
 
-
+h2{ color:white;}
 
 .escribir-mensaje-Cont { 
     display: flex; 

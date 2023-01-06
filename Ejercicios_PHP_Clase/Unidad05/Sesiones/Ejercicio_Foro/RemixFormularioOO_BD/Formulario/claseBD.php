@@ -87,9 +87,9 @@
             )");
 
             $stmt->execute([
-                ":username"       => $user->getUsername()->getDatos(),
-                ":correo"         => $user->getCorreo()->getDatos(),
-                ":contrasena"     => password_hash($user->getContraseña()->getDatos(), PASSWORD_DEFAULT),
+                ":username"       => $user['username'],
+                ":correo"         => $user['e-mail'],
+                ":contrasena"     => password_hash($user['password'], PASSWORD_DEFAULT),
             ]);
         }
 
@@ -113,6 +113,25 @@
 
             return $stmt->fetchAll();
         }
+
+        function seleccionarMensaje($get){
+            $stmt = self::$instance->prepare
+            ("SELECT username, 
+                     fecha_hora, 
+                     cuerpoMensaje 
+            FROM usuarios_foro, mensajes_foro 
+            WHERE usuarios_foro.id_user = mensajes_foro.id_user 
+            AND id_msg = :id_msg AND mensajes_foro.id_user = :id_user;
+            ");
+
+            $stmt->bindParam(':id_msg', $get['id_msg']);
+            $stmt->bindParam(':id_user', $get['id_user']);
+
+            $stmt->execute();
+
+            return $stmt->fetch();
+        }
+
 
         function eliminarFilas($post){
             $stmt = self::$instance->prepare(

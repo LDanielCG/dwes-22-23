@@ -11,18 +11,25 @@
     if (isset($_POST["submit"])){
         if($formulario->esValidoLogin()){
             //Recupera el los datos del usuario con el email introducido.
-            $select = $baseDeDatos->buscarPorMail($_POST['login']);
+            $select = $baseDeDatos->buscarPorMail($_POST['e-mail']);
 
-            //print_r($select);
-            if(empty($select)){
-                //Crear el usuario.
-                $baseDeDatos->registrarUsuario($_POST);
-                //Redirigir al index.
-                    header("Location: index.php");
-                //Salir
-                    exit();
+            if($_POST["e-mail"] == $_POST["confirm_email"]){
+                if($_POST["password"] == $_POST["confirm_password"]){
+                    if(empty($select)){
+                        //Crear el usuario.
+                            $baseDeDatos->registrarUsuario($_POST);
+                        //Redirigir al index.
+                            header("Location: index.php?registro=success");
+                        //Salir
+                            exit();
+                    }else{
+                        \Formulario\Campo::addErrores("E-mail introducido ya existe.");
+                    }
+                }else{
+                    \Formulario\Campo::addErrores("La contraseña tiene que coincidir.");
+                }
             }else{
-                \Formulario\Campo::addErrores("E-mail introducido ya existe.");
+                \Formulario\Campo::addErrores("El e-mail tiene que coincidir.");
             }
         }
     }
