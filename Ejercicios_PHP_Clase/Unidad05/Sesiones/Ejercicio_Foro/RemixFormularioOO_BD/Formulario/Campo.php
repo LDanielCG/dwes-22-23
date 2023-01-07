@@ -75,7 +75,7 @@
                 foreach(self::getErrores() as $error){
                     echo "<p class='error'>$error</p>";
                 }
-            }else if(@$_GET["success"]){
+            }else if(@$_GET["success"] == "1"){
                 echo "<p class='success'>Respuesta publicada con exito.</p>";
             }
         ?>

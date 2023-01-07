@@ -25,11 +25,12 @@ DROP TABLE respuestas_foro;
 
 CREATE TABLE respuestas_foro(
     id_respuesta int NOT NULL AUTO_INCREMENT,
-    id_msg int NOT NULL REFERENCES mensajes_foro(id_msg),
+    id_msg_r int NOT NULL REFERENCES mensajes_foro(id_msg),
+    id_user_r int NOT NULL REFERENCES usuarios_foro(id_user),
     id_user int NOT NULL REFERENCES usuarios_foro(id_user),
     fecha_hora int NOT NULL,
     cuerpoRespuesta varchar(128) NOT NULL,
-    PRIMARY KEY (id_respuesta,id_msg,id_user)
+    PRIMARY KEY (id_respuesta,id_msg_r,id_user_r,id_user)
 );
 
 

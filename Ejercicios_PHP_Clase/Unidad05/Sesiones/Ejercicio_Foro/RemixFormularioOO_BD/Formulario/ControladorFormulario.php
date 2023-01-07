@@ -48,9 +48,9 @@
             //Campos                  Tipo_campo      | nombre          | datos_campo             | Placeholder             | MaxLength
             $this->id_user        = new CampoHidden   ("id_user"        , $post['id_user']);
 
-            $this->id_msg_r        = new CampoHidden   ("id_msg_r"        , $post['id_msg']);
+            $this->id_msg_r       = new CampoHidden   ("id_msg_r"       , $post['id_msg_r']);
 
-            $this->id_user_r        = new CampoHidden   ("id_user_r"        , $post['id_user']);
+            $this->id_user_r      = new CampoHidden   ("id_user_r"      , $post['id_user_r']);
             
             //$this->tema           = new CampoTexto    ("tema"           , $post['tema']);
             $this->cuerpoMensaje  = new CampoTextArea ("CuerpoMensaje"  , $post["CuerpoMensaje"]  , "¿Qué está pasando?"    , 128);

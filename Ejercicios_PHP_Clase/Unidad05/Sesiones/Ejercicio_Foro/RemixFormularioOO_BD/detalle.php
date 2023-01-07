@@ -1,43 +1,39 @@
 <?php
     session_start();
     require_once("./spl_autoload.php");
+    require_once("./getURL_SESSION.php");
     require_once("./DBConnection.php");
 
+   
     $mensaje_main = $baseDeDatos->seleccionarMensaje($_GET);
+    //Recuperar mensajes.
+    $selectRespuestas = $baseDeDatos->seleccionarRespuestas($_GET);
 
     //Crear formulario
         $formulario = Formulario\ControladorFormulario::singleton();
         @$formulario->crearCamposRespuesta($_POST);
 
-        if( isset($_GET['id_msg']) && isset($_GET['id_user']) ){
-            $_SESSION['id_msg_r'] = $_GET['id_msg'];
-            $_SESSION['id_user_r'] = $_GET['id_user'];
-        }else if( isset($_POST['h_id_msg']) && isset($_POST['h_id_user']) ){
-            $_SESSION['id_msg_r'] = $_POST['h_id_msg'];
-            $_SESSION['id_user_r'] = $_POST['h_id_user'];
+        if( isset($_GET['id_msg_r']) && isset($_GET['id_user_r']) ){
+            $_SESSION['id_msg_r'] = $_GET['id_msg_r'];
+            $_SESSION['id_user_r'] = $_GET['id_user_r'];
+        }else if( isset($_POST['id_msg_r']) && isset($_POST['id_user_r']) ){
+            $_SESSION['id_msg_r'] = $_POST['id_msg_r'];
+            $_SESSION['id_user_r'] = $_POST['id_user_r'];
         }
 
-        print_r($_SESSION);
         if (isset($_POST["submit"])){
             if($formulario->esValidoCuerpoMensaje()){
                 //Guardar en la Base de Datos la publicación.
-                    $baseDeDatos->publicarMensaje($formulario);
+                    $baseDeDatos->publicarRespuesta($formulario);
                 //Redirigir mostrando que se ha publicado correctamente.
-                    //header("Location: index.php?success=true");
+                    $url = "detalle.php?id_msg_r=".$_SESSION['id_msg_r']."&id_user_r=".$_SESSION['id_user_r'];
+                    header("Location: ".$url."&success=1");
                 //Salir
                     exit();
             }
         }
 
-
-
-
-
-
-
-
-
-
+        //print_r($_SESSION);
 
 
     function pintarMensajeMain($mensaje){ ?>
@@ -78,6 +74,46 @@
         }
     }
 
+    
+    //print_r($selectRespuestas);
+    function pintarRespuestas($selectRespuestas){
+        if(!empty($selectRespuestas)) {
+            foreach ($selectRespuestas as $fila){ ?>
+                <div class="mensaje-Cont respuesta">
+                    <div class="mensaje-userPic">
+                        <img src="./Assets/img/userPic.png" alt="userPic">
+                    </div>
+                    <div class="mensaje-cabecera-y-cuerpo">
+                        <div class="mensaje-cabecera">
+                            <?php foreach($fila as $columna => $dato){ 
+                                if($columna == "username") {
+                                    echo "<p class='mensaje-nombreUsuario'>$dato</p>";
+                                }else if($columna == "fecha_hora"){
+                                    echo "<p class='mensaje-separador subtitulo'> · </p>";
+                                    echo "<p class='mensaje-fechaHora subtitulo'>".date("d/m/Y H:i",$dato)."</p>";
+                                }
+                            } ?>
+                        </div>
+                        <div class="mensaje-cuerpo">
+                            <?php foreach($fila as $columna => $dato){ 
+                                if($columna == "cuerpoRespuesta") {
+                                    echo "<p>".$dato."</p>";
+                                }
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+        } else {
+            echo "<h2>No hay publicaciones, ¿por qué no haces una?</h2>";
+        }
+    }
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +129,7 @@
     <div class="mensajes-Cont">
         <?php pintarMensajeMain($mensaje_main) ?>
         <?php enviarMensaje() ?>
+        <?php pintarRespuestas($selectRespuestas) ?>
     </div>
 </body>
 </html>

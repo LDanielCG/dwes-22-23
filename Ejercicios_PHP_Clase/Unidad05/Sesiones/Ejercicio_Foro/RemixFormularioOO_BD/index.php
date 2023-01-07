@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once("./spl_autoload.php");
+    require_once("./getURL_SESSION.php");
     require_once("./DBConnection.php");
 
     //Recuperar mensajes.
@@ -48,7 +49,7 @@
                                     echo "<p class='mensaje-separador subtitulo'> · </p>";
                                     echo "<p class='mensaje-fechaHora subtitulo'>".date("d/m/Y H:i",$dato)."</p>";
                                     echo "<p class='mensaje-separador subtitulo'> · </p>";
-                                    echo "<a class='mensaje-detalle subtitulo' href='./detalle.php?id_msg=".$fila['id_msg']."&id_user=".$fila['id_user']."'>Ver detalle</a>";
+                                    echo "<a class='mensaje-detalle subtitulo' href='./detalle.php?id_msg_r=".$fila['id_msg']."&id_user_r=".$fila['id_user']."'>Ver detalle</a>";
                                 }
                             } ?>
                         </div>

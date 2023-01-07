@@ -55,7 +55,7 @@
             ]);
         }
 
-        function publicarMensaje($user){
+        function publicarMensaje($msg){
             $stmt = self::$instance->prepare("INSERT INTO mensajes_foro (
                 id_user,
                 fecha_hora,
@@ -69,9 +69,35 @@
             $fecha = time();
 
             $stmt->execute([
-                ":id_user"       => $user->getId_user()->getDatos(),
+                ":id_user"       => $msg->getId_user()->getDatos(),
                 ":fecha_hora"    => $fecha,
-                ":cuerpoMensaje" => $user->getCuerpoMensaje()->getDatos()
+                ":cuerpoMensaje" => $msg->getCuerpoMensaje()->getDatos()
+            ]);
+        }
+
+        function publicarRespuesta($post){
+            $stmt = self::$instance->prepare("INSERT INTO respuestas_foro (
+                id_msg_r,
+                id_user_r,
+                id_user,
+                fecha_hora,
+                cuerpoRespuesta
+            ) VALUES (
+                :id_msg_r,
+                :id_user_r,
+                :id_user,
+                :fecha_hora,
+                :cuerpoRespuesta
+            )");
+
+            $fecha = time();
+
+            $stmt->execute([
+                ":id_msg_r"        => (int)$post->getId_msg_r()->getDatos(),
+                ":id_user_r"       => (int)$post->getId_user_r()->getDatos(),
+                ":id_user"         => (int)$post->getId_user()->getDatos(),
+                ":fecha_hora"      => $fecha,
+                ":cuerpoRespuesta" => $post->getCuerpoMensaje()->getDatos()
             ]);
         }
 
@@ -124,13 +150,37 @@
             AND id_msg = :id_msg AND mensajes_foro.id_user = :id_user;
             ");
 
-            $stmt->bindParam(':id_msg', $get['id_msg']);
-            $stmt->bindParam(':id_user', $get['id_user']);
+            $stmt->bindParam(':id_msg', $get['id_msg_r']);
+            $stmt->bindParam(':id_user', $get['id_user_r']);
 
             $stmt->execute();
 
             return $stmt->fetch();
         }
+
+        function seleccionarRespuestas($get){
+            $stmt = self::$instance->prepare
+            ("SELECT username, 
+                     fecha_hora, 
+                     cuerpoRespuesta, 
+                     id_respuesta, 
+                     respuestas_foro.id_user 
+            FROM usuarios_foro, respuestas_foro 
+            WHERE usuarios_foro.id_user = respuestas_foro.id_user 
+            AND id_user_r = :id_user_r
+            AND id_msg_r = :id_msg_r
+            ORDER BY fecha_hora DESC;
+            ");
+
+            $stmt->bindParam(':id_user_r', $get['id_user_r']);
+            $stmt->bindParam(':id_msg_r', $get['id_msg_r']);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        }
+
+
 
 
         function eliminarFilas($post){

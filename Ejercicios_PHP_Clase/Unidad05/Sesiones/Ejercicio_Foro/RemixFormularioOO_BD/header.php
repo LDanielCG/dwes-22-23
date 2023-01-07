@@ -1,5 +1,5 @@
     <div class="cabecera-Cont">
-        <img class="cabecera-logo" src="./Assets/img/logo.svg" alt="TheBlastSFX"/>
+        <a href="./index.php"><img class="cabecera-logo" src="./Assets/img/logo.svg" alt="TheBlastSFX"/></a>
         <div class="cabecera-enlaces">
             <?php if(!isset($_SESSION['id_user'])) {
                 echo '<a href="./login_v2.php">Login</a>';
