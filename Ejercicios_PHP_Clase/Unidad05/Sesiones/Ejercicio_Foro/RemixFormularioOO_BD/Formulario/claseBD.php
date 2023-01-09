@@ -71,7 +71,7 @@
             $stmt->execute([
                 ":id_user"       => $msg->getId_user()->getDatos(),
                 ":fecha_hora"    => $fecha,
-                ":cuerpoMensaje" => $msg->getCuerpoMensaje()->getDatos()
+                ":cuerpoMensaje" => nl2br($msg->getCuerpoMensaje()->getDatos())
             ]);
         }
 
@@ -97,7 +97,7 @@
                 ":id_user_r"       => (int)$post->getId_user_r()->getDatos(),
                 ":id_user"         => (int)$post->getId_user()->getDatos(),
                 ":fecha_hora"      => $fecha,
-                ":cuerpoRespuesta" => $post->getCuerpoMensaje()->getDatos()
+                ":cuerpoRespuesta" => nl2br($post->getCuerpoMensaje()->getDatos())
             ]);
         }
 
