@@ -1,0 +1,23 @@
+
+usuarios
+-id_usuario
+-nombre
+-password
+-img
+-correo
+-descripcion
+
+token
+-id
+-id_usuario
+-valor
+-expiracion
+
+
+
+listado.php [publico]   /listado/ (listado usuarios)
+detalle.php [publico]   /detalle/<nombre>/
+login.php [publico]     /login/
+logout.php [privado]    /logout/
+registro.php [publico]  /registro/
+edit.php [privado]      /perfil/
